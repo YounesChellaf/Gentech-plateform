@@ -58,7 +58,7 @@
 
         <!-- page content -->
         <div data-layout-fragment="content"></div>
-
+        <jsp:element name="content"/>
         <!-- /page content -->
 
         <!-- footer content -->
