@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @SessionAttributes
 public class PageController {
 
+
+
     @GetMapping("/")
     public String home()
     {

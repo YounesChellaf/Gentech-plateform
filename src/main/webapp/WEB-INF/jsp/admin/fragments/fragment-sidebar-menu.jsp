@@ -4,8 +4,8 @@
         <ul class="nav side-menu">
             <li><a><i class="fa fa-home"></i>Gestion utilisateur<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="#index3.html">Utilisateurs</a></li>
-                    <li><a href="#index.html">Role</a></li>
+                    <li><a href="/admin/users">Utilisateurs</a></li>
+                    <li><a href="/admin/roles">Role</a></li>
                     <li><a href="#index2.html">Permission</a></li>
                 </ul>
             </li>
