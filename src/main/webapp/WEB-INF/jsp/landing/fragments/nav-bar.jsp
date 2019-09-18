@@ -15,13 +15,7 @@
                 <ul class="nav navbar-nav ec-nav__navbar ml-auto">
 
                     <li class="nav-item nav-item__has-dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Resources</a>
-                        <ul class="dropdown-menu col-md-8">
-                            <li><a href="#" class="nav-link__list">alimentation et l agriculture</a></li>
-                            <li><a href="#" class="nav-link__list">Marines</a></li>
-                            <li><a href="#" class="nav-link__list">Faune sauvage et domestique</a></li>
-                            <li><a href="#" class="nav-link__list">Micro-organismes</a></li>
-                        </ul>
+                        <a class="nav-link" href="/resources">Resources</a>
                     </li>
 
                     <li class="nav-item">

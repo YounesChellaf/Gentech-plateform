@@ -9,7 +9,7 @@
                     <li><a href="#index2.html">Permission</a></li>
                 </ul>
             </li>
-            <li><a><i class="fa fa-sitemap"></i>Demande de permis</a>
+            <li><a href="/admin/request-permis"><i class="fa fa-sitemap"></i>Demande de permis</a>
             </li>
             <li><a><i class="fa fa-desktop"></i>Presentation APA<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
@@ -17,13 +17,7 @@
                     <li><a href="#media_gallery.html">Media Gallery</a></li>
                 </ul>
             </li>
-            <li><a><i class="fa fa-edit"></i>Lois et reglements<span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="#form_wizards.html">Form Wizard</a></li>
-                    <li><a href="#form_upload.html">Form Upload</a></li>
-                    <li><a href="#form_buttons.html">Form Buttons</a></li>
-                </ul>
-            </li>
+            <li><a href="/admin/loi-reglement"><i class="fa fa-edit"></i>Lois et reglements</a></li>
 
             <li><a href="/admin/institution"><i class="fa fa-table"></i>Institutions nationales<span class="fa fa-chevron-down"></span></a>
             </li>

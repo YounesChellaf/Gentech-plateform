@@ -17,6 +17,8 @@ import java.util.List;
 @Controller
 public class UtilisateurController {
 
+    String redirectUrl = "/admin/users";
+
     @Autowired
     UtilisateurRepository repository;
 
@@ -51,15 +53,19 @@ public class UtilisateurController {
     @RequestMapping(value = "/admin/block-user",method = RequestMethod.POST)
     public String block(@RequestParam long id)
     {
-
-        return "admin/users-list";
+        Utilisateur user = repository.findById(id).get();
+        user.Block();
+        repository.save(user);
+        return "redirect:" + redirectUrl ;
     }
 
     @RequestMapping(value = "/admin/unblock-user",method = RequestMethod.POST)
     public String unblock(@RequestParam long id)
     {
-
-        return "admin/users-list";
+        Utilisateur user = repository.findById(id).get();
+        user.UnBlock();
+        repository.save(user);
+        return "redirect:" + redirectUrl ;
     }
 
 

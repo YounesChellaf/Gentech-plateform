@@ -54,11 +54,11 @@ public class Utilisateur implements Serializable {
         return isBlocked;
     }
 
-    public void Blocked(){
+    public void Block(){
        this.isBlocked = true;
     }
 
-    public void UnBlocked(){
+    public void UnBlock(){
         this.isBlocked = false;
     }
 

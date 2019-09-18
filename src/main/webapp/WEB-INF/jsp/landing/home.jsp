@@ -53,7 +53,7 @@
                 </h1>
                 <div class="container">
                     <div class="row" style="margin-left: 22%" >
-                        <a href="/resource-demand"><button class="btn btn-outline-success" style="margin-right: 2%">Demander une resource genetique</button></a>
+                        <a href="/resource-demand"><button class="btn btn-outline-success" style="margin-right: 10%">Demander une resource genetique</button></a>
                         <a href="/help-demand"><button class="btn btn-outline-danger ">Comment demander une resource ?</button></a>
                     </div>
                 </div>

@@ -67,16 +67,13 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Gestion d utilisateur</h3>
+                        <h3>Gestion des demandes de permis</h3>
                     </div>
 
                     <div class="title_right">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
-                                <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
+<%--                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#model-add-role">Ajouter role</button>--%>
                             </div>
                         </div>
                     </div>
@@ -91,29 +88,28 @@
                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>Nom d utilisateur</th>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
                                         <th>Email</th>
-                                        <th>blockage</th>
+                                        <th>Raison Social</th>
+                                        <th>Resource</th>
+                                        <th>Status</th>
+                                        <th>Details</th>
+                                        <th>Valider</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="user" items="${users}">
-                                    <tr>
-                                        <td>${user.getUserName()}</td>
-                                        <td>${user.getEmail()}</td>
-                                        <c:if test="${user.getIsBlocked() == false}" >
-                                            <form action="/admin/block-user" method="post">
-                                                <input type="hidden" name="id" value="${user.getId()}">
-                                                <td><button type="submit" class="btn btn-danger">Blocker</button></td>
-                                            </form>
-                                        </c:if>
-                                        <c:if test="${user.getIsBlocked() == true}" >
-                                            <form action="/admin/unblock-user" method="post">
-                                                <input type="hidden" name="id" value="${user.getId()}">
-                                                <td><button type="submit" class="btn btn-success">Deblocker</button></td>
-                                            </form>
-                                        </c:if>
-                                    </tr>
+                                    <c:forEach var="request" items="${requests}">
+                                        <tr>
+                                            <td>${request.getFirstName()}</td>
+                                            <td>${request.getLastName()}</td>
+                                            <td>${request.getEmail()}</td>
+                                            <td>${request.getSocialReason()}</td>
+                                            <td>${request.getResource()}</td>
+                                            <td>${request.getState()}</td>
+                                            <td><button class="btn btn-info">Details</button></td>
+                                            <td><button class="btn btn-success" >Valider</button></td>
+                                        </tr>
                                     </c:forEach>
                                     </tbody>
                                 </table>
@@ -123,7 +119,6 @@
                 </div>
             </div>
         </div>
-
 
         <!-- /page content -->
 

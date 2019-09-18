@@ -45,7 +45,57 @@
 <section class="pt-5 paddingBottom-100 bg-light-v2">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-3">
+                <div id="accordion">
+
+                    <div class="card card-body accordion-item marginTop-30">
+                        <a href="#acc1" class="accordion__title h6 mb-0" data-toggle="collapse" aria-expanded="true">
+                            Filtre par type
+                            <span class="accordion__icon float-right small mx-2 mt-1">
+            <i class="ti-angle-down"></i>
+            <i class="ti-angle-up"></i>
+          </span>
+                        </a>
+                        <div id="acc1" class="collapse show" data-parent="#accordion">
+                            <div class="mt-4">
+                                <p class="mb-2">
+                                    <label class="ec-checkbox">
+                                        <input type="checkbox" name="checkbox">
+                                        <span class="ec-checkbox__control"></span>
+                                        <span class="ec-checkbox__lebel">Alimentation</span>
+                                    </label>
+                                </p>
+                                <p class="mb-2">
+                                    <label class="ec-checkbox">
+                                        <input type="checkbox" name="checkbox">
+                                        <span class="ec-checkbox__control"></span>
+                                        <span class="ec-checkbox__lebel">Marine</span>
+                                    </label>
+                                </p>
+                                <p class="mb-2">
+                                    <label class="ec-checkbox">
+                                        <input type="checkbox" name="checkbox">
+                                        <span class="ec-checkbox__control"></span>
+                                        <span class="ec-checkbox__lebel">Faune</span>
+                                    </label>
+                                </p>
+                                <p class="mb-2">
+                                    <label class="ec-checkbox">
+                                        <input type="checkbox" name="checkbox">
+                                        <span class="ec-checkbox__control"></span>
+                                        <span class="ec-checkbox__lebel">Micro-organisme</span>
+                                    </label>
+                                </p>
+
+                            </div>
+                        </div>
+                    </div> <!-- END accordion-item-->
+
+
+                </div> <!-- END accordion-->
+
+            </div>
+            <div class="col-md-9">
                 <div class="row">
 
                     <div class="col-lg-4 col-md-6 marginTop-30 wow fadeIn">
@@ -96,56 +146,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 marginTop-30 wow fadeIn">
-                        <div class="card text-center height-100p shadow-v1">
-                            <div class="card-header">
-                                <img class="w-100" src="/images/resource.jpeg" alt="">
-                            </div>
-                            <div class="card-body px-3 py-0">
-                                <a href="/resource-details" class="h6">Bootstrap Referance Guide</a>
-                                <p class="text-gray">
-                                    Thomas Rang
-                                </p>
-                            </div>
-                            <div class="card-footer border-top-0">
-                                <button class="btn btn-outline-primary mx-1">Details</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 marginTop-30 wow fadeIn">
-                        <div class="card text-center height-100p shadow-v1">
-                            <div class="card-header">
-                                <img class="w-100" src="/images/resource.jpeg" alt="">
-                            </div>
-                            <div class="card-body px-3 py-0">
-                                <a href="/resource-details" class="h6">Bootstrap Referance Guide</a>
-                                <p class="text-gray">
-                                    Thomas Rang
-                                </p>
-                            </div>
-                            <div class="card-footer border-top-0">
-                                <button class="btn btn-outline-primary mx-1">Details</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 marginTop-30 wow fadeIn">
-                        <div class="card text-center height-100p shadow-v1">
-                            <div class="card-header">
-                                <img class="w-100" src="/images/resource.jpeg" alt="">
-                            </div>
-                            <div class="card-body px-3 py-0">
-                                <a href="/resource-details" class="h6">Bootstrap Referance Guide</a>
-                                <p class="text-gray">
-                                    Thomas Rang
-                                </p>
-                            </div>
-                            <div class="card-footer border-top-0">
-                                <button class="btn btn-outline-primary mx-1">Details</button>
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div> <!-- END row-->
             </div> <!-- END col-md-9-->
         </div> <!-- END row-->

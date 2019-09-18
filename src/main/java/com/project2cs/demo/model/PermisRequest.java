@@ -29,17 +29,56 @@ public class PermisRequest {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "state")
+    private String state;
+
 
     protected PermisRequest() {
     }
 
-    public PermisRequest(String firstName, String lastName,String email,String socialReason,String resource,String description) {
+    public PermisRequest(String firstName, String lastName,String email,String socialReason,String resource,String description,String state) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.socialReason = socialReason;
         this.resource = resource;
         this.description = description;
+        this.state = state;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getSocialReason() {
+        return socialReason;
+    }
+
+    public String getResource() {
+        return resource;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 }
