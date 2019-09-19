@@ -27,6 +27,14 @@
                     </li>
 
                     <li class="nav-item nav-item__has-dropdown">
+                        <a class="nav-link" href="cta"> CTA</a>
+                    </li>
+
+                    <li class="nav-item nav-item__has-dropdown">
+                        <a class="nav-link" href=""></a>
+                    </li>
+
+                    <li class="nav-item nav-item__has-dropdown">
                         <a class="nav-link" href="login"><button style="margin-top: -10px" class="btn btn-outline-success">Connecter</button></a>
                     </li>
                     <li class="nav-item nav-item__has-dropdown">

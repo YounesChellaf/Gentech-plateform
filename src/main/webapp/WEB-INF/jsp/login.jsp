@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,6 +69,16 @@
                     </div>
                     <div>
                         <input type="email" class="form-control" placeholder="Email" name="email" required="" />
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <select name="role" class="form-control">
+                                <option value="">Choisir un role</option>
+                                <c:forEach var="role" items="${roles}">
+                                    <option value="${role.getRoleId()}">${role.getRole()}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
                     </div>
                     <div>
                         <input type="password" class="form-control" placeholder="mot de passe"  name="password" required="" />

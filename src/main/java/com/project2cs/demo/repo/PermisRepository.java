@@ -1,6 +1,5 @@
 package com.project2cs.demo.repo;
 
-import com.project2cs.demo.model.Customer;
 import com.project2cs.demo.model.PermisRequest;
 import org.springframework.data.repository.CrudRepository;
 

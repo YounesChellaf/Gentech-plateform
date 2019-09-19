@@ -1,6 +1,8 @@
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu" data-th-fragment="sidebar-menu">
     <div class="menu_section">
-        <h3>General</h3>
+        <h3>
+            -
+        </h3>
         <ul class="nav side-menu">
             <li><a><i class="fa fa-home"></i>Gestion utilisateur<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
@@ -13,8 +15,7 @@
             </li>
             <li><a><i class="fa fa-desktop"></i>Presentation APA<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="#general_elements.html">General Elements</a></li>
-                    <li><a href="#media_gallery.html">Media Gallery</a></li>
+                    <li><a href="admin/articles">Articles</a></li>
                 </ul>
             </li>
             <li><a href="/admin/loi-reglement"><i class="fa fa-edit"></i>Lois et reglements</a></li>

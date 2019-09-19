@@ -87,6 +87,10 @@
                                     </label>
                                 </p>
 
+                                <div style="text-align: center">
+                                    <button class="btn btn-primary mx-4">Filtrer</button>
+                                </div>
+
                             </div>
                         </div>
                     </div> <!-- END accordion-item-->

@@ -36,7 +36,7 @@ public class RoleController {
     @RequestMapping(value = "/admin/update-role",method = RequestMethod.POST)
     public String updateRole(@RequestParam String designation,@RequestParam long id){
         Role role = repository.findById(id).get();
-        role.setDesignation(designation);
+        role.setRole(designation);
         repository.save(role);
         return "redirect:" + redirectUrl ;
     }

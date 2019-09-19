@@ -67,13 +67,13 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Gestion des roles</h3>
+                        <h3>Gestion des articles</h3>
                     </div>
 
                     <div class="title_right">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                             <div class="input-group">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#model-add-role">Ajouter role</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#model-add-role">Ajouter articles</button>
                             </div>
                         </div>
                     </div>
@@ -88,17 +88,21 @@
                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>Designation du role</th>
+                                        <th>Titre</th>
+                                        <th>Contenu</th>
+                                        <th>Date de publication</th>
                                         <th>Modifier</th>
                                         <th>Supprimer</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="role" items="${roles}">
+                                    <c:forEach var="article" items="${articles}">
                                         <tr>
-                                            <td>${role.getRole()}</td>
-                                            <td><button class="btn btn-success" data-toggle="modal" data-target="#model-update-role-${role.getRoleId()}">Modifier</button></td>
-                                            <td><button class="btn btn-danger" data-toggle="modal" data-target="#model-remove-role-${role.getRoleId()}">Supprimer</button></td>
+                                            <td>${article.getTitle()}</td>
+                                            <td>${article.getContent()}</td>
+                                            <td>${article.getPublish_date()}</td>
+                                            <td><button class="btn btn-success" data-toggle="modal" data-target="#model-update-article-${article.getId()}">Modifier</button></td>
+                                            <td><button class="btn btn-danger" data-toggle="modal" data-target="#model-remove-article-${article.getId()}">Supprimer</button></td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
@@ -115,13 +119,17 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Ajouter un nouveau role dans le system</h4>
+                            <h4 class="modal-title">Ajouter un nouveau article dans le system</h4>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="/admin/add-role">
+                            <form method="POST" action="/admin/add-article">
                                 <div class="form-group">
-                                    <label for="recipient-name" class="control-label">designation</label>
-                                    <input type="text" name="designation" class="form-control" id="recipient-name" required>
+                                    <label for="recipient-name" class="control-label">Titre</label>
+                                    <input type="text" name="title" class="form-control" id="recipient-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="control-label">Titre</label>
+                                    <textarea type="text" name="content" class="form-control" required></textarea>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-success">Ajouter</button>
@@ -133,43 +141,47 @@
             </div>
         </div>
 
-        <c:forEach var="role" items="${roles}">
-            <div class="col-md-4">
-                <div id="model-update-role-${role.getRoleId()}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Modifier ce role dans le system</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form method="post" action="/admin/update-role">
+        <c:forEach var="article" items="${articles}">
 
-                                    <div class="form-group">
-                                        <label for="recipient-name" class="control-label">designation</label>
-                                        <input type="text" name="designation" class="form-control" value="${role.getRole()}">
-                                        <input type="hidden" name="id" value="${role.getRoleId()}">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Modifier</button>
-                                    </div>
-                                </form>
-                            </div>
+            <div class="col-md-4">
+            <div id="model-update-article-${article.getId()}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modifier cet article dans le system</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="/admin/update-article">
+                                <div class="form-group">
+                                    <label for="recipient-name" class="control-label">Titre</label>
+                                    <input type="text" name="title" class="form-control" value="${article.getTitle()}">
+                                    <input type="hidden" name="id" value="${article.getId()}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="control-label">Contenu</label>
+                                    <textarea type="text" name="content" class="form-control">${article.getContent()}</textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Modifier</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
             <div class="col-md-4">
-                <div id="model-remove-role-${role.getRoleId()}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div id="model-remove-article-${article.getId()}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Supprimer ce role dans le system</h4>
+                                <h4 class="modal-title">Supprimer cet article dans le system</h4>
                             </div>
                             <div class="modal-body">
-                                <form method="post" action="/admin/remove-role">
+                                <form method="post" action="/admin/remove-article">
                                     <div class="form-group">
-                                        <p>Etes vous sure de supprimer le role de ${role.getRole()}</p>
-                                        <input type="hidden" value="${role.getRoleId()}" name="id">
+                                        <p>Etes vous sure de supprimer l article de ${article.getTitle()}</p>
+                                        <input type="hidden" value="${article.getId()}" name="id">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-danger">Supprimer</button>

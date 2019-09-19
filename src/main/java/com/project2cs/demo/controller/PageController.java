@@ -1,7 +1,12 @@
 package com.project2cs.demo.controller;
 
+import com.project2cs.demo.repo.ArticleRepository;
+import com.project2cs.demo.repo.RoleRepository;
+import com.project2cs.demo.repo.UtilisateurRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -10,11 +15,14 @@ import org.springframework.web.bind.annotation.*;
 @SessionAttributes
 public class PageController {
 
-
+    @Autowired
+    ArticleRepository Articlerepository;
+    RoleRepository roleRepository;
 
     @GetMapping("/")
-    public String home()
+    public String home(ModelMap model)
     {
+        model.addAttribute("articles",Articlerepository.findAll());
         return "landing/home";
     }
 
@@ -62,9 +70,10 @@ public class PageController {
         return "admin/admin-institution";
     }
 
-    @GetMapping("/login")
-    public String login()
+    @GetMapping("/connecter")
+    public String login(ModelMap model)
     {
+        model.addAttribute("roles",roleRepository.findAll());
         return "login";
     }
 
