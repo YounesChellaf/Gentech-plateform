@@ -8,7 +8,6 @@
                 <ul class="nav child_menu">
                     <li><a href="/admin/users">Utilisateurs</a></li>
                     <li><a href="/admin/roles">Role</a></li>
-                    <li><a href="#index2.html">Permission</a></li>
                 </ul>
             </li>
             <li><a href="/admin/request-permis"><i class="fa fa-sitemap"></i>Demande de permis</a>
@@ -18,16 +17,19 @@
                     <li><a href="admin/articles">Articles</a></li>
                 </ul>
             </li>
-            <li><a href="/admin/loi-reglement"><i class="fa fa-edit"></i>Lois et reglements</a></li>
+            <li><a href="/admin/reglement"><i class="fa fa-edit"></i>Lois et reglements</a></li>
 
-            <li><a href="/admin/institution"><i class="fa fa-table"></i>Institutions nationales<span class="fa fa-chevron-down"></span></a>
+            <li><a><i class="fa fa-home"></i>Institutions & RH<span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="/admin/institution">Institutions</a></li>
+                    <li><a href="/admin/rh">RH</a></li>
+                </ul>
             </li>
             <li><a><i class="fa fa-bug"></i>Ressources genetiques<span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="#chartjs.html">alimentation et l agriculture</a></li>
-                    <li><a href="#chartjs.html">Marines</a></li>
-                    <li><a href="#chartjs2.html">Faune sauvage et domestique</a></li>
-                    <li><a href="#morisjs.html">Micro-organismes</a></li>
+                    <li><a href="/admin/categories">Categorie</a></li>
+                    <li><a href="/admin/type">Type</a></li>
+                    <li><a href="/admin/resources">Resources</a></li>
                 </ul>
             </li>
             <li><a><i class="fa fa-clone"></i>Demande de permis<span class="fa fa-chevron-down"></span></a>

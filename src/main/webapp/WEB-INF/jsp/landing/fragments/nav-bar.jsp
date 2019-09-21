@@ -25,11 +25,6 @@
                     <li class="nav-item nav-item__has-dropdown">
                         <a class="nav-link" href="lois-reglements"> Lois et reglement </a>
                     </li>
-
-                    <li class="nav-item nav-item__has-dropdown">
-                        <a class="nav-link" href="cta"> CTA</a>
-                    </li>
-
                     <li class="nav-item nav-item__has-dropdown">
                         <a class="nav-link" href=""></a>
                     </li>

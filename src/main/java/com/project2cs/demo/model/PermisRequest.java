@@ -1,5 +1,7 @@
 package com.project2cs.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,8 +22,8 @@ public class PermisRequest {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "socialRaison")
-    private String socialReason;
+    @Column(name = "raison")
+    private String reason;
 
     @Column(name = "resource")
     private String resource;
@@ -32,6 +34,11 @@ public class PermisRequest {
     @Column(name = "state")
     private String state;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "file_id")
+    @JsonProperty("file")
+    private FileModel file;
+
 
     protected PermisRequest() {
     }
@@ -40,10 +47,11 @@ public class PermisRequest {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.socialReason = socialReason;
+        this.reason = socialReason;
         this.resource = resource;
         this.description = description;
         this.state = state;
+        //sthis.file = file;
     }
 
     public long getId() {
@@ -66,8 +74,8 @@ public class PermisRequest {
         return description;
     }
 
-    public String getSocialReason() {
-        return socialReason;
+    public String reason() {
+        return reason;
     }
 
     public String getResource() {

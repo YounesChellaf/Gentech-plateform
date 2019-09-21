@@ -17,36 +17,50 @@ public class Ressource {
 	@JsonProperty("nom")
 	private String nom;
 
+	@Column(name = "description")
+	@JsonProperty("description")
+	private String description;
+
+	@Column(name = "carracteristics")
+	@JsonProperty("carracteristics")
+	private String carracteristics;
 
 	@ManyToOne(optional = false) 
     @JoinColumn(name = "type_id")
 	@JsonProperty("type")
 	private Type type;
+
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "file_id")
+	@JsonProperty("file")
+	private FileModel file;
+
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "institution_id")
+	@JsonProperty("institution")
+	private Institution institution;
+
+//	@ManyToOne(optional = false)
+//	@JoinColumn(name = "user_id")
+//	@JsonProperty("user_id")
+//	private Utilisateur user;
 	
 	@Column(name = "date")
 	@JsonProperty("date")
-	private Date date;
-	
-	@Column(name = "origine_isolation")
-	@JsonProperty("origine_isolation")
-	private String origineIsolation;
+	private String date;
+
 	
 	@Column(name = "etat")
 	@JsonProperty("etat")
 	private String etat;
-	
-	@Column(name = "temp_min")
-	@JsonProperty("temp_min")
-	private int tempMin;
-	
-	@Column(name = "temp_max")
-	@JsonProperty("temp_max")
-	private int tempMax;
-	
-	@Column(name = "temp_opt")
-	@JsonProperty("temp_opt")
-	private int tempOpt;
-	
+
+
+	public FileModel getFile() {
+		return file;
+	}
+	public void setFile(FileModel file) {
+		this.file = file;
+	}
 	public int getId() {
 		return id;
 	}
@@ -59,8 +73,31 @@ public class Ressource {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
-	
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Institution getInstitution() {
+		return institution;
+	}
+
+	public void setInstitution(Institution institution) {
+		this.institution = institution;
+	}
+
+	public String getCarracteristics() {
+		return carracteristics;
+	}
+
+	public void setCarracteristics(String carracteristics) {
+		this.carracteristics = carracteristics;
+	}
+
 	public Type getType() {
 		return type;
 	}
@@ -69,17 +106,11 @@ public class Ressource {
 	}
 	
 	
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
-	}
-	public String getOrigineIsolation() {
-		return origineIsolation;
-	}
-	public void setOrigineIsolation(String origineIsolation) {
-		this.origineIsolation = origineIsolation;
 	}
 	public String getEtat() {
 		return etat;
@@ -87,38 +118,30 @@ public class Ressource {
 	public void setEtat(String etat) {
 		this.etat = etat;
 	}
-	public int getTempMin() {
-		return tempMin;
-	}
-	public void setTempMin(int tempMin) {
-		this.tempMin = tempMin;
-	}
-	public int getTempMax() {
-		return tempMax;
-	}
-	public void setTempMax(int tempMax) {
-		this.tempMax = tempMax;
-	}
-	public int getTempOpt() {
-		return tempOpt;
-	}
-	public void setTempOpt(int tempOpt) {
-		this.tempOpt = tempOpt;
-	}
-	public Ressource(String nom, Type type, Date date, String origineIsolation, String etat, int tempMin, int tempMax,
-			int tempOpt) {
-		this.id = id;
+
+//	public Utilisateur getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(Utilisateur user) {
+//		this.user = user;
+//	}
+
+
+	public Ressource(String nom,Type type,String date, String etat,String description,String carracteristics,FileModel file,Institution institution) {
 		this.nom = nom;
 		this.type = type;
 		this.date = date;
-		this.origineIsolation = origineIsolation;
 		this.etat = etat;
-		this.tempMin = tempMin;
-		this.tempMax = tempMax;
-		this.tempOpt = tempOpt;
+		this.carracteristics= carracteristics;
+		this.description = description;
+		this.file = file;
+		this.institution = institution;
 	}
-	public Ressource() {
-	}
+
+	protected Ressource(){
+	};
+
 	
 	
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,35 +59,16 @@
                         </a>
                         <div id="acc1" class="collapse show" data-parent="#accordion">
                             <div class="mt-4">
+                                <c:forEach var="categorie" items="${categories}">
                                 <p class="mb-2">
                                     <label class="ec-checkbox">
-                                        <input type="checkbox" name="checkbox">
+                                        <input type="checkbox" id="check-${categorie.getId()}" name="checkbox">
+<%--                                        <button id="check-${categorie.getId()}">do</button>--%>
                                         <span class="ec-checkbox__control"></span>
-                                        <span class="ec-checkbox__lebel">Alimentation</span>
+                                        <span class="ec-checkbox__lebel">${categorie.getNomCategorie()}</span>
                                     </label>
                                 </p>
-                                <p class="mb-2">
-                                    <label class="ec-checkbox">
-                                        <input type="checkbox" name="checkbox">
-                                        <span class="ec-checkbox__control"></span>
-                                        <span class="ec-checkbox__lebel">Marine</span>
-                                    </label>
-                                </p>
-                                <p class="mb-2">
-                                    <label class="ec-checkbox">
-                                        <input type="checkbox" name="checkbox">
-                                        <span class="ec-checkbox__control"></span>
-                                        <span class="ec-checkbox__lebel">Faune</span>
-                                    </label>
-                                </p>
-                                <p class="mb-2">
-                                    <label class="ec-checkbox">
-                                        <input type="checkbox" name="checkbox">
-                                        <span class="ec-checkbox__control"></span>
-                                        <span class="ec-checkbox__lebel">Micro-organisme</span>
-                                    </label>
-                                </p>
-
+                                </c:forEach>
                             </div>
                         </div>
                     </div> <!-- END accordion-item-->
@@ -97,55 +79,46 @@
             </div>
             <div class="col-md-9">
                 <div class="row">
+                    <c:forEach var="resource" items="${resources}">
+                    <div class="col-lg-4 col-md-6  marginTop-30 wow fadeIn" id="general-div">
+                        <div class="card text-center height-100p shadow-v1">
+                            <div class="card-header">
+                                <img class="w-100" src="/images/resource.jpeg" alt="">
+                            </div>
+                            <form action="/resource-details" method="post">
+                            <div class="card-body px-3 py-0">
+                                    <input type="hidden" value="${resource.getId()}" name="id">
+                                <a class="h6">${resource.getNom()}</a>
 
-                    <div class="col-lg-4 col-md-6 marginTop-30 wow fadeIn">
-                        <div class="card text-center height-100p shadow-v1">
-                            <div class="card-header">
-                                <img class="w-100" src="/images/resource.jpeg" alt="">
-                            </div>
-                            <div class="card-body px-3 py-0">
-                                <a href="/resource-details" class="h6">Bootstrap Referance Guide</a>
                                 <p class="text-gray">
                                     Thomas Rang
                                 </p>
                             </div>
                             <div class="card-footer border-top-0">
-                                <button class="btn btn-outline-primary mx-1">Details</button>
+                                <button type="submit" class="btn btn-outline-primary mx-1">Details</button>
                             </div>
+                            </form>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 marginTop-30 wow fadeIn">
-                        <div class="card text-center height-100p shadow-v1">
-                            <div class="card-header">
-                                <img class="w-100" src="/images/resource.jpeg" alt="">
-                            </div>
-                            <div class="card-body px-3 py-0">
-                                <a href="/resource-details" class="h6">Bootstrap Referance Guide</a>
-                                <p class="text-gray">
-                                    Thomas Rang
-                                </p>
-                            </div>
-                            <div class="card-footer border-top-0">
-                                <button class="btn btn-outline-primary mx-1">Details</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 marginTop-30 wow fadeIn">
-                        <div class="card text-center height-100p shadow-v1">
-                            <div class="card-header">
-                                <img class="w-100" src="/images/resource.jpeg" alt="">
-                            </div>
-                            <div class="card-body px-3 py-0">
-                                <a href="/resource-details" class="h6">Bootstrap Referance Guide</a>
-                                <p class="text-gray">
-                                    Thomas Rang
-                                </p>
-                            </div>
-                            <div class="card-footer border-top-0">
-                                <button class="btn btn-outline-primary mx-1">Details</button>
+                    </c:forEach>
+                    <c:forEach var="resource" items="${resources}">
+                        <div hidden="hidden"   class="col-lg-4 col-md-6  marginTop-30 wow fadeIn" id="div-${resource.getType().getCategorie().getId()}">
+                            <div class="card text-center height-100p shadow-v1">
+                                <div class="card-header">
+                                    <img class="w-100" src="/images/resource.jpeg" alt="">
+                                </div>
+                                <div class="card-body px-3 py-0">
+                                    <a href="/resource-details/${resource.getId()}" class="h6">${resource.getNom()}</a>
+                                    <p class="text-gray">
+                                        Thomas Rang
+                                    </p>
+                                </div>
+                                <div class="card-footer border-top-0">
+                                    <button class="btn btn-outline-primary mx-1">Details</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </c:forEach>
                 </div> <!-- END row-->
             </div> <!-- END col-md-9-->
         </div> <!-- END row-->
@@ -161,5 +134,16 @@
 
 <script src="js/vendors.bundle.js"></script>
 <script src="js/scripts.js"></script>
+<script>
+
+    $(document).ready(function(){
+        <c:forEach var="categorie" items="${categories}">
+        $("#check-${categorie.getId()}").click(function () {
+            $("#general-div").hide()
+            $("#div-${categorie.getId()}").show();
+        })
+        </c:forEach>
+    });
+</script>
 </body>
 </html>

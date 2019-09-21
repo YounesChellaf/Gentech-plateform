@@ -79,12 +79,18 @@
                             </div>
                             <input type="email" class="form-control border-left-0 pl-0" placeholder="Email" name="email" required>
                         </div>
+
                         <div class="input-group input-group--focus mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white"></span>
                             </div>
-                            <input type="text" class="form-control border-left-0 pl-0" placeholder="Raison social" name="socialReason" required>
+                                <select name="raison" class="form-control border-left-0 pl-0">
+                                    <option value="">Type d usage</option>
+                                        <option value="">Scientifique</option>
+                                        <option value="">Commerciale</option>
+                                </select>
                         </div>
+
                         <div class="input-group input-group--focus mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white"></span>
@@ -96,6 +102,12 @@
                                 <span class="input-group-text bg-white"></span>
                             </div>
                             <textarea type="text" class="form-control border-left-0 pl-0" placeholder="Description" name="description" required></textarea>
+                        </div>
+                        <div class="input-group input-group--focus mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white"></span>
+                            </div>
+                            <input type="file" class="form-control border-left-0 pl-0" placeholder="Resource" name="resource" required>
                         </div>
                         <div class="input-group my-4">
                             <label class="ec-checkbox">
@@ -127,5 +139,6 @@
 
 <script src="js/vendors.bundle.js"></script>
 <script src="js/scripts.js"></script>
+
 </body>
 </html>

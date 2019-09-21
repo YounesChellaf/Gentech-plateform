@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,10 +88,6 @@
                                     </label>
                                 </p>
 
-                                <div style="text-align: center">
-                                    <button class="btn btn-primary mx-4">Filtrer</button>
-                                </div>
-
                             </div>
                         </div>
                     </div> <!-- END accordion-item-->
@@ -102,55 +99,27 @@
 
             <div class="col-md-9">
                 <div class="row">
+                    <c:forEach var="institu" items="${institutions}">
                     <div class="col-lg-4 col-md-6 marginTop-30 wow fadeIn">
                         <div class="card text-center height-100p shadow-v1">
                             <div class="card-header">
                                 <img class="w-100" src="/images/institution.jpeg" alt="">
                             </div>
+                            <form action="/institution-rh-details" method="post">
                             <div class="card-body px-3 py-0">
-                                <a href="shop-single.html" class="h6">Bootstrap Referance Guide</a>
+                                <a href="shop-single.html" class="h6">${institu.getName()}</a>
                                 <p class="text-gray">
-                                    Thomas Rang
+                                    ${institu.getLocation()}
                                 </p>
                             </div>
-                            <div class="card-footer border-top-0">
-                                <button class="btn btn-outline-primary mx-1">Details</button>
-                            </div>
+                                <input type="hidden" name="institu_id" value="${institu.getId()}">
+                                <div class="card-footer border-top-0">
+                                    <button type="submit" class="btn btn-outline-primary mx-1">Details</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 marginTop-30 wow fadeIn">
-                        <div class="card text-center height-100p shadow-v1">
-                            <div class="card-header">
-                                <img class="w-100" src="/images/institution.jpeg" alt="">
-                            </div>
-                            <div class="card-body px-3 py-0">
-                                <a href="shop-single.html" class="h6">Bootstrap Referance Guide</a>
-                                <p class="text-gray">
-                                    Thomas Rang
-                                </p>
-                            </div>
-                            <div class="card-footer border-top-0">
-                                <button class="btn btn-outline-primary mx-1">Details</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 marginTop-30 wow fadeIn">
-                        <div class="card text-center height-100p shadow-v1">
-                            <div class="card-header">
-                                <img class="w-100" src="/images/institution.jpeg" alt="">
-                            </div>
-                            <div class="card-body px-3 py-0">
-                                <a href="shop-single.html" class="h6">Bootstrap Referance Guide</a>
-                                <p class="text-gray">
-                                    Thomas Rang
-                                </p>
-                            </div>
-                            <div class="card-footer border-top-0">
-                                <button class="btn btn-outline-primary mx-1">Details</button>
-                            </div>
-                        </div>
-                    </div>
-
+                    </c:forEach>
                 </div> <!-- END row-->
             </div> <!-- END col-md-9-->
         </div> <!-- END row-->
