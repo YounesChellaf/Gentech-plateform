@@ -1,6 +1,8 @@
 package com.project2cs.demo.controller;
 
+import com.project2cs.demo.model.FileModel;
 import com.project2cs.demo.model.PermisRequest;
+import com.project2cs.demo.repo.FilesRepository;
 import com.project2cs.demo.repo.PermisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 @Controller
 public class PermisController {
 
 
     @Autowired
     PermisRepository repository;
+    @Autowired
+    FilesRepository filesRepository;
 
     @GetMapping("/admin/request-permis")
     public String PermisShow(ModelMap model){
@@ -28,11 +34,12 @@ public class PermisController {
     public String add(@RequestParam String lastName,
                       @RequestParam String firstName,
                       @RequestParam String email,
-                      @RequestParam String socialReason,
-                      @RequestParam String resource,
+                      @RequestParam String raison,
                       @RequestParam String description,
-                      @RequestParam MultipartFile file){
-        repository.save(new PermisRequest(lastName,firstName,email,socialReason,resource,description,"draft"));
+                      @RequestParam MultipartFile file) throws IOException {
+        FileModel filemode = new FileModel(file.getOriginalFilename(), file.getContentType(), file.getBytes());
+        filesRepository.save(filemode);
+        repository.save(new PermisRequest(lastName,firstName,email,raison,description,"draft",filemode));
         return "landing/home";
     }
 }

@@ -43,15 +43,26 @@ public class PermisRequest {
     protected PermisRequest() {
     }
 
-    public PermisRequest(String firstName, String lastName,String email,String socialReason,String resource,String description,String state) {
+    public PermisRequest(String firstName, String lastName, String email, String socialReason, String description, String state,FileModel file) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.reason = socialReason;
-        this.resource = resource;
         this.description = description;
         this.state = state;
-        //sthis.file = file;
+        this.file = file;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public FileModel getFile() {
+        return file;
+    }
+
+    public void setFile(FileModel file) {
+        this.file = file;
     }
 
     public long getId() {

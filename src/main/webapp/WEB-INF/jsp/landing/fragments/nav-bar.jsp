@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav class="ec-nav sticky-top bg-white">
     <div class="container">
         <div class="navbar p-0 navbar-expand-lg">
@@ -28,13 +29,19 @@
                     <li class="nav-item nav-item__has-dropdown">
                         <a class="nav-link" href=""></a>
                     </li>
+                    <c:choose>
+                        <c:when test="${logged_in != true}">
+                            <li class="nav-item nav-item__has-dropdown">
+                                <a class="nav-link" href="login"><button style="margin-top: -10px" class="btn btn-outline-success">Connecter</button></a>
+                            </li>
+                            <li class="nav-item nav-item__has-dropdown">
+                                <a class="nav-link" href="login#signup"><button style="margin-top: -10px" class="btn btn-outline-dark">S inscrire</button></a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
 
-                    <li class="nav-item nav-item__has-dropdown">
-                        <a class="nav-link" href="login"><button style="margin-top: -10px" class="btn btn-outline-success">Connecter</button></a>
-                    </li>
-                    <li class="nav-item nav-item__has-dropdown">
-                        <a class="nav-link" href="login#signup"><button style="margin-top: -10px" class="btn btn-outline-dark">S inscrire</button></a>
-                    </li>
+                        </c:otherwise>
+                    </c:choose>
 
                 </ul>
             </div>

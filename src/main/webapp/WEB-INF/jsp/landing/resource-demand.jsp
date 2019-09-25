@@ -60,7 +60,7 @@
                     <p>
                         Les informations fournis dans ce formulaire doit etre obligatoirement correcte pour le traitement de votre demande.
                     </p>
-                    <form action="submit-demand" method="POST" class="mt-4">
+                    <form action="submit-demand" method="POST" class="mt-4" enctype="multipart/form-data">
                         <div class="input-group input-group--focus mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white"></span>
@@ -90,13 +90,6 @@
                                         <option value="">Commerciale</option>
                                 </select>
                         </div>
-
-                        <div class="input-group input-group--focus mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white"></span>
-                            </div>
-                            <input type="text" class="form-control border-left-0 pl-0" placeholder="Resource" name="resource" required>
-                        </div>
                         <div class="input-group input-group--focus mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white"></span>
@@ -107,7 +100,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white"></span>
                             </div>
-                            <input type="file" class="form-control border-left-0 pl-0" placeholder="Resource" name="resource" required>
+                            <input type="file" class="form-control border-left-0 pl-0"  name="file" required>
                         </div>
                         <div class="input-group my-4">
                             <label class="ec-checkbox">

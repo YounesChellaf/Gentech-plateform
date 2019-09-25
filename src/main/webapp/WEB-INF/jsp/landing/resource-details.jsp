@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6 my-2">
                         <div class="text-md-right height-100p">
-                            <a class="btn btn-primary" href="#">Demander autorisation</a>
+                            <a class="btn btn-primary" href="/resource-demand">Demander autorisation</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 my-2">

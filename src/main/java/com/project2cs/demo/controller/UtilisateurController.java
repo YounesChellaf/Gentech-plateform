@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -23,58 +24,65 @@ public class UtilisateurController {
     UtilisateurRepository repository;
 
 
-//    @RequestMapping(value = "/register",method = RequestMethod.POST)
-//    public String register(@RequestParam String userName,
-//                      @RequestParam String email,
-//                      @RequestParam String password){
-//
-//        repository.save(new Utilisateur(userName,email,password,false));
-//        return "landing/home";
-//
-//    }
-//
-//    @RequestMapping(value = "/login",method = RequestMethod.POST)
-//    public String login(@RequestParam String userName,
-//                        @RequestParam String password){
-//
-//
-//        Utilisateur user = repository.findByUserName(userName);
-//
-//
-//        if ( user.getPassword() == password ) {
-//            return "landing/home" ;
-//        }
-//        else {
-//            return "login";
-//        }
-//
-//    }
-//
-//    @RequestMapping(value = "/admin/block-user",method = RequestMethod.POST)
-//    public String block(@RequestParam long id)
-//    {
-//        Utilisateur user = repository.findById(id).get();
-//        user.Block();
-//        repository.save(user);
-//        return "redirect:" + redirectUrl ;
-//    }
-//
-//    @RequestMapping(value = "/admin/unblock-user",method = RequestMethod.POST)
-//    public String unblock(@RequestParam long id)
-//    {
-//        Utilisateur user = repository.findById(id).get();
-//        user.UnBlock();
-//        repository.save(user);
-//        return "redirect:" + redirectUrl ;
-//    }
-//
-//
-//    @GetMapping("/admin/users")
-//    public String users(ModelMap model)
-//    {
-//        model.addAttribute("users",repository.findAll());
-//        return "admin/users-list";
-//    }
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    public String register(@RequestParam String userName,
+                      @RequestParam String email,
+                      @RequestParam String password){
+
+        repository.save(new Utilisateur(userName,email,password,false));
+        return "landing/home";
+
+    }
+
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public String login(HttpSession session, @RequestParam String userName,
+                        @RequestParam String password){
+
+
+        Utilisateur user = repository.findByUserName(userName).get();
+        if ( user.getPassword().equals(password)) {
+            session.setAttribute("logged_in",true);
+            session.setAttribute("user",user);
+            return "landing/home" ;
+        }
+        else {
+            return "login";
+        }
+
+    }
+
+    @RequestMapping(value = "/admin/block-user",method = RequestMethod.POST)
+    public String block(@RequestParam long id)
+    {
+        Utilisateur user = repository.findById(id).get();
+        user.Block();
+        repository.save(user);
+        return "redirect:" + redirectUrl ;
+    }
+
+    @RequestMapping(value = "/admin/unblock-user",method = RequestMethod.POST)
+    public String unblock(@RequestParam long id)
+    {
+        Utilisateur user = repository.findById(id).get();
+        user.UnBlock();
+        repository.save(user);
+        return "redirect:" + redirectUrl ;
+    }
+
+
+    @GetMapping("/admin/users")
+    public String users(ModelMap model)
+    {
+        model.addAttribute("users",repository.findAll());
+        return "admin/users-list";
+    }
+
+    @GetMapping("logout")
+    public String logout(HttpSession session)
+    {
+        session.setAttribute("logged_in",false);
+        return "landing/home";
+    }
 
 
 }

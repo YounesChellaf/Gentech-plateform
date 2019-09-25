@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -104,9 +105,13 @@ public class PageController {
         return "landing/rh";
     }
     @GetMapping("/admin")
-    public String admin()
+    public String admin(HttpSession session)
     {
-        return "admin/plain-page";
+
+        if ((boolean)session.getAttribute("logged_in")==true){
+            return "admin/plain-page";}
+        else
+            return "login";
     }
 
 //    @GetMapping("/admin/institution")
@@ -115,13 +120,13 @@ public class PageController {
 //        return "admin/admin-institution";
 //    }
 
-    @GetMapping("/connecter")
+    @GetMapping("/login")
     public String login(ModelMap model)
     {
         model.addAttribute("roles",roleRepository.findAll());
         return "login";
     }
-    @GetMapping("/inscrire")
+    @GetMapping("/register")
     public String register(ModelMap model)
     {
         model.addAttribute("roles",roleRepository.findAll());

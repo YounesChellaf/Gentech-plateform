@@ -62,7 +62,7 @@
 
         <div id="register" class="animate form registration_form">
             <section class="login_content">
-                <form action="/inscrire" method="POST">
+                <form action="/register" method="POST">
                     <h1>Creer un Compte</h1>
                     <div>
                         <input type="text" class="form-control" placeholder="Prenom utilisateur" name="name" required="" />
