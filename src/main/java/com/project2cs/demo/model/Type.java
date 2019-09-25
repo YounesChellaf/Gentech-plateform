@@ -31,10 +31,11 @@ public class Type {
 	public Type() {
 	}
 	
-	public Type(String nomType, String description, String carracteristics) {
+	public Type(String nomType, String description, String carracteristics,Categorie categorie) {
 		this.nomType = nomType;
 		this.description = description;
 		this.carracteristics = carracteristics;
+		this.categorie = categorie;
 	}
 	
 	public int getId() {
@@ -60,7 +61,15 @@ public class Type {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
 	public String getCarracteristics() {
 		return carracteristics;
 	}

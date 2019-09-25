@@ -4,43 +4,48 @@ import com.project2cs.demo.model.Categorie;
 
 import com.project2cs.demo.repo.CategorieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("/categories_manager")
+@Controller
+
 public class CategorieController {
+
+	String redirectUrl = "/admin/categories";
 
 	@Autowired
 	private CategorieRepository categorieRep;
-	
-	@GetMapping("/showall")
-	public List<Categorie> getCategories(){
-		return categorieRep.findAll();
+
+	@GetMapping("/admin/categories")
+	public String getCategories(ModelMap model){
+		model.addAttribute("categories",categorieRep.findAll());
+		return "admin/categorie";
 	}
-	
-	@GetMapping("/show/{id}")
-	public Optional<Categorie> getCategorieByID(@PathVariable int id){
-		return categorieRep.findById(id);
+
+	@PostMapping("/admin/add-categorie")
+	public String addCategorie(@RequestParam String nomCategorie,@RequestParam String description,@RequestParam String carracteristics){
+		categorieRep.save(new Categorie(nomCategorie,description,carracteristics));
+		return "redirect:" + redirectUrl;
 	}
-	
-	@DeleteMapping("/del/{id}")
-	public List<Categorie> delCategorie(@PathVariable int id){
+
+
+	@PostMapping("/admin/update-categorie")
+	public String UpdateCategorie(@RequestParam int id,@RequestParam String nomCategorie,@RequestParam String description,@RequestParam String carracteristics){
+		Categorie categorie = categorieRep.findById(id).get();
+		categorie.setNomCategorie(nomCategorie);
+		categorie.setDescription(description);
+		categorie.setCarracteristics(carracteristics);
+		categorieRep.save(categorie);
+		return "redirect:" + redirectUrl;
+	}
+
+	@PostMapping("/admin/remove-categorie")
+	public String delCategorie(@RequestParam int id){
 		categorieRep.deleteById(id);
-		return categorieRep.findAll();
+		return "redirect:" + redirectUrl;
 	}
-	
-	@PostMapping("/add")
-	public List<Categorie> addCategorie(@RequestBody Categorie categorie){
-		categorieRep.save(categorie);
-		return categorieRep.findAll();
-	}
-	
-	@PutMapping("/edit")
-	public List<Categorie> editCategorie(@RequestBody Categorie categorie){
-		categorieRep.save(categorie);
-		return categorieRep.findAll();
-	} 
 }

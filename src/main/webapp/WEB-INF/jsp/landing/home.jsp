@@ -54,7 +54,8 @@
                 </h1>
                 <div class="container">
                     <div class="row" style="margin-left: 22%" >
-                        <a href="/resource-demand"><button class="btn btn-outline-success" style="margin-right: 10px">Demander une resource genetique</button></a>
+<%--                        <a href="/resource-demand"><button class="btn btn-outline-success" style="margin-right: 10px">Demander une resource genetique</button></a>--%>
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#model-add-role" style="margin-right: 10px">Ajouter une resource genetique</button>
                         <a href="/help-demand"><button class="btn btn-outline-danger ">Comment demander une resource ?</button></a>
                     </div>
                 </div>
@@ -112,7 +113,7 @@
         <div class="row align-items-center">
 
             <div class="col-lg-5 mb-4 mr-auto text-center">
-                <img class="wow fadeInLeft w-100 rounded" src="images/media.jpg" alt="">
+                <img class="wow fadeInLeft w-100 rounded" src="images/biologie.jpeg" alt="">
             </div>
 
             <div class="col-lg-6">
@@ -156,9 +157,9 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center text-white mb-5">
-                <h2 class="mb-4">
-                    Votre support d informations
-                </h2>
+                <h1 class="mb-4">
+                    Dans le vaste laboratoire de la genetique, l etre humain a perdu sa definition.
+                </h1>
                 <div class="width-3rem height-4 rounded bg-primary mx-auto"></div>
             </div>
 
@@ -180,27 +181,91 @@
             <c:forEach var="article" items="${articles}">
             <div class="col-lg-4 mt-5">
                 <div class="card">
-                    <img class="rounded" src="images/media.jpg" alt="">
+                    <img class="rounded" src="images/biologie.jpeg" alt="">
+                    <form action="/article-details" method="post">
                     <div class="card-body px-0">
-                        <a href="#" class="h4 my-2">
+                        <span class="h4 my-2">
                             ${article.getTitle()}
-                        </a>
+                        </span>
                         <p>
                             ${article.getPublish_date()} - ecrit par <a href="#" class="text-primary">Admin</a>
                         </p>
                     </div>
+                        <input type="hidden" name="article_id" value="${article.getId()}">
+                        <div class="card-footer border-top-0">
+                            <button type="submit" class="btn btn-outline-primary mx-1">Lire</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             </c:forEach>
 
         </div>
     </div>
-    <div class="col-12 text-center mt-5">
-        <button class="btn btn-primary btn-icon">
-           Visualiser tous
-        </button>
-    </div>
+<%--    <div class="col-12 text-center mt-5">--%>
+<%--        <button class="btn btn-primary btn-icon">--%>
+<%--           Visualiser tous--%>
+<%--        </button>--%>
+<%--    </div>--%>
 </section>
+
+<div class="col-md-6">
+    <div id="model-add-role" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Ajouter une nouvelle resource dans le system</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/add-resource" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">designation de la resource</label>
+                            <input type="text" name="nom" class="form-control" id="recipient-name" required>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <label for="recipient-name" class="control-label">Type de resource</label>
+                                <select name="type_id" class="form-control">
+                                    <option value="">Choisir un type pour votre resource</option>
+                                    <c:forEach var="type" items="${types}">
+                                        <option value="${type.getId()}">${type.getNomType()}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <label for="recipient-name" class="control-label">Type de resource</label>
+                                <select name="institu_id" class="form-control">
+                                    <option value="">Choisir l institution de votre resource</option>
+                                    <c:forEach var="institu" items="${institutions}">
+                                        <option value="${institu.getId()}">${institu.getName()}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">description</label>
+                            <textarea type="text" name="description" class="form-control"  required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">Caracteristique</label>
+                            <textarea type="text" name="carracteristics" class="form-control"  required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">Image de la resource</label>
+                            <input type="file" name="image" class="form-control"  required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Ajouter</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <jsp:include page="fragments/footer.jsp"/>
 

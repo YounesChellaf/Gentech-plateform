@@ -67,13 +67,13 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Gestion des articles</h3>
+                        <h3>Gestion des categories</h3>
                     </div>
 
                     <div class="title_right">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                             <div class="input-group">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#model-add-role">Ajouter articles</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#model-add-role">Ajouter categorie</button>
                             </div>
                         </div>
                     </div>
@@ -88,21 +88,19 @@
                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>Titre</th>
-                                        <th>Contenu</th>
-                                        <th>Date de publication</th>
+                                        <th>Designation du categorie</th>
+                                        <th>Details</th>
                                         <th>Modifier</th>
                                         <th>Supprimer</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="article" items="${articles}">
+                                    <c:forEach var="categorie" items="${categories}">
                                         <tr>
-                                            <td>${article.getTitle()}</td>
-                                            <td>${article.getContent()}</td>
-                                            <td>${article.getPublish_date()}</td>
-                                            <td><button class="btn btn-success" data-toggle="modal" data-target="#model-update-article-${article.getId()}">Modifier</button></td>
-                                            <td><button class="btn btn-danger" data-toggle="modal" data-target="#model-remove-article-${article.getId()}">Supprimer</button></td>
+                                            <td>${categorie.getNomCategorie()}</td>
+                                            <td><button class="btn btn-primary" data-toggle="modal" data-target="#model-details-role-${categorie.getId()}">Details</button></td>
+                                            <td><button class="btn btn-success" data-toggle="modal" data-target="#model-update-role-${categorie.getId()}">Modifier</button></td>
+                                            <td><button class="btn btn-danger" data-toggle="modal" data-target="#model-remove-role-${categorie.getId()}">Supprimer</button></td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
@@ -119,22 +117,24 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Ajouter un nouveau article dans le system</h4>
+                            <h4 class="modal-title">Ajouter un nouveau role dans le system</h4>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="/admin/add-article" enctype="multipart/form-data">
+                            <form method="post" action="/admin/add-categorie">
                                 <div class="form-group">
-                                    <label for="recipient-name" class="control-label">Titre</label>
-                                    <input type="text" name="title" class="form-control" id="recipient-name" required>
+                                    <label for="recipient-name" class="control-label">designation</label>
+                                    <input type="text" name="nomCategorie" class="form-control" id="recipient-name" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="recipient-name" class="control-label">Titre</label>
-                                    <textarea type="text" name="content" class="form-control" required></textarea>
+                                    <label for="recipient-name" class="control-label">Description du categorie</label>
+                                    <textarea type="text" name="description" class="form-control"  required></textarea>
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="recipient-name" class="control-label">Image</label>
-                                    <input type="file" name="image" class="form-control"  required>
+                                    <label for="recipient-name" class="control-label">Caracteristique du categorie</label>
+                                    <textarea type="text" name="carracteristics" class="form-control"  required></textarea>
                                 </div>
+
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-success">Ajouter</button>
                                 </div>
@@ -145,47 +145,77 @@
             </div>
         </div>
 
-        <c:forEach var="article" items="${articles}">
-
+        <c:forEach var="categorie" items="${categories}">
             <div class="col-md-4">
-            <div id="model-update-article-${article.getId()}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Modifier cet article dans le system</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form method="post" action="/admin/update-article">
+                <div id="model-details-role-${categorie.getId()}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Modifier ce role dans le system</h4>
+                            </div>
+                            <div class="modal-body">
+
+
+                                    <div class="form-group">
+                                        <h2>${categorie.getNomCategorie()}</h2>
+                                    </div>
                                 <div class="form-group">
-                                    <label for="recipient-name" class="control-label">Titre</label>
-                                    <input type="text" name="title" class="form-control" value="${article.getTitle()}">
-                                    <input type="hidden" name="id" value="${article.getId()}">
+                                    <h5>${categorie.getDescription()}</h5>
                                 </div>
                                 <div class="form-group">
-                                    <label for="recipient-name" class="control-label">Contenu</label>
-                                    <textarea type="text" name="content" class="form-control">${article.getContent()}</textarea>
+                                    <p>${categorie.getCarracteristics()}</>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Modifier</button>
-                                </div>
-                            </form>
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
             <div class="col-md-4">
-                <div id="model-remove-article-${article.getId()}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div id="model-update-role-${categorie.getId()}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Supprimer cet article dans le system</h4>
+                                <h4 class="modal-title">Modifier cette categorie dans le system</h4>
                             </div>
                             <div class="modal-body">
-                                <form method="post" action="/admin/remove-article">
+                                <form method="post" action="/admin/update-categorie">
+
                                     <div class="form-group">
-                                        <p>Etes vous sure de supprimer l article de ${article.getTitle()}</p>
-                                        <input type="hidden" value="${article.getId()}" name="id">
+                                        <label for="recipient-name" class="control-label">designation</label>
+                                        <input type="text" name="nomCategorie" class="form-control" value="${categorie.getNomCategorie()}" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="control-label">Description du categorie</label>
+                                        <textarea type="text" name="description" class="form-control"  required>${categorie.getDescription()}</textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="control-label">Caracteristique du categorie</label>
+                                        <textarea type="text" name="carracteristics" class="form-control"  required>${categorie.getCarracteristics()}</textarea>
+                                    </div>
+                                    <input type="hidden" name="id" value="${categorie.getId()}">
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Modifier</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="model-remove-role-${categorie.getId()}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Supprimer cette categorie dans le system</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="/admin/remove-categorie">
+                                    <div class="form-group">
+                                        <p>Etes vous sure de supprimer le role de ${categorie.getNomCategorie()}</p>
+                                        <input type="hidden" value="${categorie.getId()}" name="id">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-danger">Supprimer</button>

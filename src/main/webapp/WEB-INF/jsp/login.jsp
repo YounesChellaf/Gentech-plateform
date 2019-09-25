@@ -65,14 +65,17 @@
                 <form action="/register" method="POST">
                     <h1>Creer un Compte</h1>
                     <div>
-                        <input type="text" class="form-control" placeholder="Nom utilisateur" name="userName" required="" />
+                        <input type="text" class="form-control" placeholder="Prenom utilisateur" name="name" required="" />
+                    </div>
+                    <div>
+                        <input type="text" class="form-control" placeholder="Nom utilisateur" name="lastName" required="" />
                     </div>
                     <div>
                         <input type="email" class="form-control" placeholder="Email" name="email" required="" />
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <select name="role" class="form-control">
+                            <select name="role_id" class="form-control">
                                 <option value="">Choisir un role</option>
                                 <c:forEach var="role" items="${roles}">
                                     <option value="${role.getRoleId()}">${role.getRole()}</option>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,45 +43,41 @@
 <jsp:include page="fragments/nav-bar.jsp" />
 
 
-<section class="paddingTop-50 paddingBottom-100 bg-light-v2">
+<section class="paddingTop-30 paddingBottom-50 bg-light-v2">
     <div class="container">
+        <input id="autocomplete-input" class="autocomplete" type="text" placeholder="Search" aria-label="Search">
+        <c:forEach var="reglement" items="${reglements}">
         <div class="list-card align-items-center shadow-v1 marginTop-30">
             <div class="col-lg-4 px-lg-4 my-4">
-                <img class="w-50" src="/images/reglement.jpeg" alt="" >
+                <img class="w-50" src="/images/pdf.png" alt="" >
             </div>
             <div class="col-lg-8 paddingRight-30 my-4">
                 <div class="media justify-content-between">
                     <div class="group">
                         <a href="#" class="h4">
-                            The Web Developer Bootcamp
+                            ${reglement.getDesignation()}
                         </a>
                     </div>
-                    <a href="#" class="btn btn-opacity-primary iconbox iconbox-sm" data-container="body" data-toggle="tooltip" data-placement="top" data-skin="light" title="" data-original-title="Add to wishlist">
-                        <i class="ti-heart"></i>
-                    </a>
                 </div>
                 <p>
-                    Investig ationes demons travge vunt lectores legee lrus quodk legunt saepius claritas est conctetur adipi sicing elit, sed do eiusmod tempor incididunt labore edolore.
+                    ${reglement.getDescription()}
                 </p>
                 <div class="d-md-flex justify-content-between align-items-center">
                     <ul class="list-inline mb-md-0">
                         <li class="list-inline-item mr-3">
-                            <span class="h4 d-inline text-primary">$180</span>
-                            <span class="h6 d-inline small text-gray"><s>$249</s></span>
-                        </li>
-                        <li class="list-inline-item mr-3">
-                            <i class="ti-headphone small mr-2"></i>
-                            46 lectures
+                            <span class="h4 d-inline text-primary">Admin</span>
+
                         </li>
                         <li class="list-inline-item mr-3">
                             <i class="ti-time small mr-2"></i>
-                            27.5 hours
+                            ${reglement.getDate()}
                         </li>
                     </ul>
-                    <span class="badge badge-success">Best Selling</span>
+                    <span class="badge badge-success">Document fiable</span>
                 </div>
             </div>
         </div>
+        </c:forEach>
 
 
         <div class="row">
@@ -91,14 +88,8 @@
                             <i class="ti-angle-left small"></i>
                         </a>
                     </li>
-                    <li class="page-item mx-1">
-                        <a class="page-link iconbox iconbox-sm rounded-0" href="#">1</a>
-                    </li>
                     <li class="page-item active disabled mx-1">
-                        <a class="page-link iconbox iconbox-sm rounded-0" href="#">2</a>
-                    </li>
-                    <li class="page-item mx-1">
-                        <a class="page-link iconbox iconbox-sm rounded-0" href="#">3</a>
+                        <a class="page-link iconbox iconbox-sm rounded-0" href="#">1</a>
                     </li>
                     <li class="page-item disabled mx-1">
                         <a class="page-link iconbox iconbox-sm rounded-0" href="#">
@@ -106,7 +97,7 @@
                         </a>
                     </li>
                     <li class="page-item mx-1">
-                        <a class="page-link iconbox iconbox-sm rounded-0" href="#">16</a>
+                        <a class="page-link iconbox iconbox-sm rounded-0" href="#">3</a>
                     </li>
                     <li class="page-item mx-1">
                         <a class="page-link iconbox iconbox-sm rounded-0" href="#">
@@ -115,7 +106,8 @@
                     </li>
                 </ul>
             </div>
-        </div> <!-- END row-->
+        </div>
+        <!-- END row-->
     </div> <!-- END container-->
 </section>
 
@@ -128,6 +120,17 @@
 </div>
 
 <script src="js/vendors.bundle.js"></script>
+<script src="/js/jquery.autocomplete.js"></script>
 <script src="js/scripts.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#autocomplete-input').devbridgeAutocomplete({
+            serviceUrl: '/suggestion',
+            paramName: 'searchstr',
+            minChars: 1,
+            autoSelectFirst: true,
+        });
+    });
+</script>
 </body>
 </html>

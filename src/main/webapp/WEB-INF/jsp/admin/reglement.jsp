@@ -67,13 +67,13 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Gestion des articles</h3>
+                        <h3>Gestion des resources</h3>
                     </div>
 
                     <div class="title_right">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                             <div class="input-group">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#model-add-role">Ajouter articles</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#model-add-role">Ajouter un reglement</button>
                             </div>
                         </div>
                     </div>
@@ -88,21 +88,17 @@
                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>Titre</th>
-                                        <th>Contenu</th>
-                                        <th>Date de publication</th>
-                                        <th>Modifier</th>
-                                        <th>Supprimer</th>
+                                        <th>Designation du reglement</th>
+                                        <th>Date publication</th>
+                                        <th>Details</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="article" items="${articles}">
+                                    <c:forEach var="reglement" items="${reglements}">
                                         <tr>
-                                            <td>${article.getTitle()}</td>
-                                            <td>${article.getContent()}</td>
-                                            <td>${article.getPublish_date()}</td>
-                                            <td><button class="btn btn-success" data-toggle="modal" data-target="#model-update-article-${article.getId()}">Modifier</button></td>
-                                            <td><button class="btn btn-danger" data-toggle="modal" data-target="#model-remove-article-${article.getId()}">Supprimer</button></td>
+                                            <td>${reglement.getDesignation()}</td>
+                                            <td>${reglement.getDate()}</td>
+                                            <td><button class="btn btn-primary" data-toggle="modal" data-target="#model-details-role-${reglement.getId()}">Details</button></td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
@@ -113,27 +109,32 @@
                 </div>
             </div>
         </div>
+        <!-- /page content -->
 
         <div class="col-md-4">
             <div id="model-add-role" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Ajouter un nouveau article dans le system</h4>
+                            <h4 class="modal-title">Ajouter un nouveau reglement dans le system</h4>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="/admin/add-article" enctype="multipart/form-data">
+                            <form method="post" action="/admin/add-reglement" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="recipient-name" class="control-label">Titre</label>
-                                    <input type="text" name="title" class="form-control" id="recipient-name" required>
+                                    <label for="recipient-name" class="control-label">designation</label>
+                                    <input type="text" name="designation" class="form-control" id="recipient-name" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="recipient-name" class="control-label">Titre</label>
-                                    <textarea type="text" name="content" class="form-control" required></textarea>
+                                    <label for="recipient-name" class="control-label">designation</label>
+                                    <textarea type="text" name="description" class="form-control" required></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="recipient-name" class="control-label">Image</label>
-                                    <input type="file" name="image" class="form-control"  required>
+                                    <label for="recipient-name" class="control-label">Mot cle</label>
+                                    <textarea type="text" name="mot_cle" class="form-control" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="recipient-name" class="control-label">Le document de la loi</label>
+                                    <input type="file" name="file" class="form-control"  required>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-success">Ajouter</button>
@@ -144,63 +145,6 @@
                 </div>
             </div>
         </div>
-
-        <c:forEach var="article" items="${articles}">
-
-            <div class="col-md-4">
-            <div id="model-update-article-${article.getId()}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Modifier cet article dans le system</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form method="post" action="/admin/update-article">
-                                <div class="form-group">
-                                    <label for="recipient-name" class="control-label">Titre</label>
-                                    <input type="text" name="title" class="form-control" value="${article.getTitle()}">
-                                    <input type="hidden" name="id" value="${article.getId()}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="control-label">Contenu</label>
-                                    <textarea type="text" name="content" class="form-control">${article.getContent()}</textarea>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Modifier</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-            <div class="col-md-4">
-                <div id="model-remove-article-${article.getId()}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Supprimer cet article dans le system</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form method="post" action="/admin/remove-article">
-                                    <div class="form-group">
-                                        <p>Etes vous sure de supprimer l article de ${article.getTitle()}</p>
-                                        <input type="hidden" value="${article.getId()}" name="id">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </c:forEach>
-
-        <!-- /page content -->
-
 
         <!-- footer content -->
         <%--        <div data-th-replace="fragments/fragment-footer-content :: footer-content"></div>--%>
