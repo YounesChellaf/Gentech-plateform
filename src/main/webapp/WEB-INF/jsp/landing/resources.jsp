@@ -83,16 +83,12 @@
                     <div class="col-lg-4 col-md-6  marginTop-30 wow fadeIn" id="general-div">
                         <div class="card text-center height-100p shadow-v1">
                             <div class="card-header">
-                                <img class="w-100" src="/images/resource.jpeg" alt="">
+                                <img class="w-100" src="/uploads/${resource.getFile().getName()}" alt="">
                             </div>
                             <form action="/resource-details" method="post">
                             <div class="card-body px-3 py-0">
                                     <input type="hidden" value="${resource.getId()}" name="id">
                                 <a class="h6">${resource.getNom()}</a>
-
-                                <p class="text-gray">
-                                    Thomas Rang
-                                </p>
                             </div>
                             <div class="card-footer border-top-0">
                                 <button type="submit" class="btn btn-outline-primary mx-1">Details</button>

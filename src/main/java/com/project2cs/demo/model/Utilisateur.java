@@ -26,6 +26,9 @@ public class Utilisateur implements Serializable {
     @Column(name = "password")
     public String password;
 
+    @Column(name = "permission")
+    public boolean permission;
+
     @Column(name = "isBlocked")
     private boolean isBlocked = false;
 
@@ -43,8 +46,13 @@ public class Utilisateur implements Serializable {
         this.password = password;
         this.isBlocked = block;
         this.role = role;
+        if (role.getDesignation().equals("user")) this.permission = false;
+        else this.permission = true;
     }
 
+    public boolean getPermission() {
+        return permission;
+    }
     public String getEmail() {
         return email;
     }
@@ -84,6 +92,11 @@ public class Utilisateur implements Serializable {
 
     public Role getRole() {
         return role;
+    }
+
+
+    public void putPermission() {
+        this.permission = true;
     }
 
     public void setUserName(String userName) {

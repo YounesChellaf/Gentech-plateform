@@ -35,16 +35,43 @@ public class PermisRequest {
     private String state;
 
 
-    protected PermisRequest() {
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id")
+    @JsonProperty("user")
+    public Utilisateur user;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "file_id")
+    @JsonProperty("file")
+    public FileModel file;
+
+
+    public PermisRequest(){
     }
 
-    public PermisRequest(String firstName, String lastName, String email, String socialReason, String description, String state) {
+    public PermisRequest(String firstName, String lastName, String email, String socialReason, String description, String state,FileModel file,String resource,Utilisateur user) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.reason = socialReason;
         this.description = description;
         this.state = state;
+        this.user = user;
+        this.file = file;
+        this.resource = resource;
+    }
+
+    public Utilisateur getUser() {
+        return user;
+    }
+
+
+    public FileModel getFile() {
+        return file;
+    }
+
+    public void setFile(FileModel file) {
+        this.file = file;
     }
 
     public String getReason() {

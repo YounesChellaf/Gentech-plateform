@@ -2,14 +2,17 @@ package com.project2cs.demo.controller;
 
 
 
+import com.project2cs.demo.controller.storage.FileSystemStorageService;
+import com.project2cs.demo.controller.storage.StorageProperties;
+import com.project2cs.demo.controller.storage.FileSystemStorageService;
 import com.project2cs.demo.model.Utilisateur;
 import com.project2cs.demo.repo.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -38,16 +41,14 @@ public class TestApi {
         }
 
     }
-
-    @GetMapping(value = "access")
-    public String test(HttpSession session)
-    {
-        return  (String) session.getAttribute("role");
-//        if ((boolean)session.getAttribute("logged_in")==true && (String) session.getAttribute("role")=="admin"){
-//            return "admin/plain-page";}
-//        else
-//            return "login";
+    
+    @PostMapping(value="/upload")
+    public String upload(@RequestParam("doc") MultipartFile file) {
+		FileSystemStorageService fss= new FileSystemStorageService(new StorageProperties());
+		fss.store(file,file.getOriginalFilename());
+    	return file.getOriginalFilename();
     }
 
 
 }
+

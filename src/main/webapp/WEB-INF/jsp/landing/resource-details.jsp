@@ -64,11 +64,19 @@
                             </div>
                         </c:when>
                         <c:otherwise>
+                            <form action="/resource-demand" method="post">
+                                <input type="hidden" name="resource" value="${resource.getNom()}">
                             <div class="col-lg-3 col-md-6 my-2">
                                 <div class="text-md-right height-100p">
-                                    <a class="btn btn-primary" href="/resource-demand">Demander autorisation</a>
+                                    <button class="btn btn-primary" type="submit">Demander autorisation</button>
                                 </div>
                             </div>
+                            </form>
+                            <c:if test="${traitement == 'posted'}"><div class="center-margin col-lg-8 col-md-6 my-2">
+                                <div class="text-md-right height-100p">
+                                    <div class="alert alert-danger">Votre demande est en cours de traitement </div>
+                                </div>
+                            </div></c:if>
                         </c:otherwise>
                     </c:choose>
 
@@ -83,7 +91,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#tabInstructors" role="tab" aria-selected="true">
-                                Informations categorie superieur
+                                Informations categorie
                             </a>
                         </li>
                         <li class="nav-item">
@@ -91,6 +99,18 @@
                                 Usage
                             </a>
                         </li>
+                        <c:choose>
+                            <c:when test="${permission == true}">
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#tabDoc" role="tab" aria-selected="true">
+                                        Documents prive
+                                    </a>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                            </c:otherwise>
+                        </c:choose>
+
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tabDescription" role="tabpanel">
@@ -139,7 +159,32 @@
                             <p>
                                 ${usage.getDescription()}
                             </p>
-                        </div> <!-- END tab-pane -->
+                        </div><!-- END tab-pane -->
+                        <div class="tab-pane fade" id="tabDoc" role="tabpanel">
+                            <div class="row">
+                                <div class="list-card align-items-center shadow-v1 marginTop-30">
+                                    <div class="col-lg-6 px-lg-6 my-4">
+                                        <img class="w-50" src="/images/pdf.png" alt="" >
+                                    </div>
+                                    <div class="col-lg-6 paddingRight-30 my-4">
+                                        <div class="media justify-content-between">
+                                            <div class="group">
+                                                <a href="#" class="h4">
+                                                    Document prive
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <p>
+                                        </p>
+                                        <div class="d-md-flex justify-content-between align-items-center">
+                                            <ul class="list-inline mb-md-0">
+                                            </ul>
+                                            <span class="badge badge-success">Document fiable</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </div> <!-- END tab-content-->
                 </div> <!-- END col-12 -->

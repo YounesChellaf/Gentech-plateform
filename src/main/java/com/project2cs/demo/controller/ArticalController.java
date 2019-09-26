@@ -1,5 +1,7 @@
 package com.project2cs.demo.controller;
 
+import com.project2cs.demo.controller.storage.FileSystemStorageService;
+import com.project2cs.demo.controller.storage.StorageProperties;
 import com.project2cs.demo.model.Article;
 import com.project2cs.demo.model.FileModel;
 import com.project2cs.demo.repo.ArticleRepository;
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 
 @Controller
@@ -34,16 +37,20 @@ public class ArticalController {
     public String roles(ModelMap model, HttpSession session)
     {
         if (((boolean)session.getAttribute("logged_in")==true) && (session.getAttribute("role").equals("admin"))){
-        model.addAttribute("articles",repository.findAll());
-        return "/admin/articles";}
+            model.addAttribute("articles",repository.findAll());
+            return "/admin/articles";}
         else  return "login";
     }
 
     @RequestMapping(value = "/admin/add-article",method = RequestMethod.POST)
     public String addArticle(HttpSession session,@RequestParam MultipartFile image , @RequestParam String title, @RequestParam String content) throws IOException {
         if (((boolean)session.getAttribute("logged_in")==true) && (session.getAttribute("role").equals("admin"))){
-        FileModel filemode = new FileModel(image.getOriginalFilename(), image.getContentType(), image.getBytes());
+    	String fname = image.getOriginalFilename();
+        FileModel filemode = new FileModel(fname);
         filesRepository.save(filemode);
+        FileSystemStorageService fss= new FileSystemStorageService(new StorageProperties());
+		fss.store(image, fname);
+		
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(System.currentTimeMillis());
         repository.save(new Article(title,content,formatter.format(date),filemode));
@@ -73,3 +80,4 @@ public class ArticalController {
         return "login";
     }
 }
+

@@ -42,35 +42,57 @@
 
 <jsp:include page="fragments/nav-bar.jsp" />
 
-
-<section class="pt-5 paddingBottom-100 bg-light-v2">
+<section class="paddingTop-30 paddingBottom-50 bg-light-v2">
     <div class="container">
-        <div class="row">
-
-
-            <div class="col-md-12">
-                <div class="row">
-                    <c:forEach var="rh" items="${rhs}">
-                        <div class="col-lg-4 col-md-6 marginTop-30 wow fadeIn">
-                            <div class="card text-center height-100p shadow-v1">
-                                    <div class="card-body px-3 py-0">
-                                        <a href="shop-single.html" class="h6">${rh.getNom()}</a>
-                                        <p class="text-gray">
-                                                ${rh.getDescription()}
-                                        </p>
-                                    </div>
-                                    <div class="card-body px-3 py-0">
-                                        <p class="text-gray">
-                                                ${rh.getContact()}
-                                        </p>
-                                    </div>
-
-                            </div>
+        <c:forEach var="rh" items="${rhs}">
+            <div class="list-card align-items-center shadow-v1 marginTop-30">
+                <div class="col-lg-4 px-lg-4 my-4">
+                    <img class="w-50" src="/images/institution.jpeg" alt="" >
+                </div>
+                <div class="col-lg-8 paddingRight-30 my-4">
+                    <div class="media justify-content-between">
+                        <div class="group">
+                            <a href="#" class="h4">
+                                    ${rh.getNom()}
+                            </a>
                         </div>
-                    </c:forEach>
-                </div> <!-- END row-->
-            </div> <!-- END col-md-9-->
-        </div> <!-- END row-->
+                    </div>
+                    <p>
+                            ${rh.getDescription()}
+                    </p>
+                </div>
+            </div>
+        </c:forEach>
+
+
+        <div class="row">
+            <div class="col-12 marginTop-70">
+                <ul class="pagination pagination-primary justify-content-center">
+                    <li class="page-item mx-1">
+                        <a class="page-link iconbox iconbox-sm rounded-0" href="#">
+                            <i class="ti-angle-left small"></i>
+                        </a>
+                    </li>
+                    <li class="page-item active disabled mx-1">
+                        <a class="page-link iconbox iconbox-sm rounded-0" href="#">1</a>
+                    </li>
+                    <li class="page-item disabled mx-1">
+                        <a class="page-link iconbox iconbox-sm rounded-0" href="#">
+                            <i class="ti-more-alt"></i>
+                        </a>
+                    </li>
+                    <li class="page-item mx-1">
+                        <a class="page-link iconbox iconbox-sm rounded-0" href="#">3</a>
+                    </li>
+                    <li class="page-item mx-1">
+                        <a class="page-link iconbox iconbox-sm rounded-0" href="#">
+                            <i class="ti-angle-right small"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- END row-->
     </div> <!-- END container-->
 </section>
 

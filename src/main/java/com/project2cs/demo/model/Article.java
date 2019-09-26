@@ -29,7 +29,7 @@ public class Article implements Serializable {
     @ManyToOne(optional = false)
     @JoinColumn(name = "file_id")
     @JsonProperty("file")
-    private FileModel file;
+    public FileModel file;
 
     protected Article() {
     }

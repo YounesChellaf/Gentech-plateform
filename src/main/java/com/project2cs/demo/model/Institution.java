@@ -15,7 +15,7 @@ public class Institution implements Serializable {
     private long id;
 
     @Column(name = "name")
-    private String name;
+    public String name;
 
     @Column(name = "description")
     private String description;
@@ -29,7 +29,7 @@ public class Institution implements Serializable {
     @ManyToOne(optional = false)
     @JoinColumn(name = "file_id")
     @JsonProperty("file")
-    private FileModel file;
+    public FileModel file;
 
     protected Institution() {
     }

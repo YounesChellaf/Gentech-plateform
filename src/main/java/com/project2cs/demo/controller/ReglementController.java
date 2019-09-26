@@ -1,5 +1,7 @@
 package com.project2cs.demo.controller;
 
+import com.project2cs.demo.controller.storage.FileSystemStorageService;
+import com.project2cs.demo.controller.storage.StorageProperties;
 import com.project2cs.demo.model.FileModel;
 import com.project2cs.demo.model.PermisRequest;
 import com.project2cs.demo.model.Reglement;
@@ -42,8 +44,12 @@ public class ReglementController {
                       @RequestParam String mot_cle,
                       @RequestParam MultipartFile file) throws IOException {
 
-        FileModel filemode = new FileModel(file.getOriginalFilename(), file.getContentType(), file.getBytes());
+    	String fname =  file.getOriginalFilename();
+        FileModel filemode = new FileModel(fname);
         filesRepository.save(filemode);
+        FileSystemStorageService fss= new FileSystemStorageService(new StorageProperties());
+		fss.store(file, fname);
+		
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(System.currentTimeMillis());
         repository.save(new Reglement(designation,description,mot_cle,formatter.format(date),filemode));

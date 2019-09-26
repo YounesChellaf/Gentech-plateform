@@ -43,7 +43,7 @@ public class PageController {
     public String home(ModelMap model)
     {
         model.addAttribute("types",typeRepository.findAll());
-        model.addAttribute("articles",Articlerepository.findAll());
+        model.addAttribute("articles",articleRepository.findAll());
         model.addAttribute("institutions",institutionRepository.findAll());
         return "landing/home";
     }
@@ -66,9 +66,11 @@ public class PageController {
         return "landing/article-details";
     }
 
-    @GetMapping("/resource-demand")
-    public String demand()
+    @PostMapping("/resource-demand")
+    public String demand(HttpSession session,ModelMap model,@RequestParam String resource)
     {
+        session.setAttribute("traitement","not_yet");
+        model.addAttribute("resource",resource);
         return "landing/resource-demand";
     }
 

@@ -103,7 +103,7 @@
                     <div class="col-lg-4 col-md-6 marginTop-30 wow fadeIn">
                         <div class="card text-center height-100p shadow-v1">
                             <div class="card-header">
-                                <img class="w-100" src="/images/institution.jpeg" alt="">
+                                <img class="w-100" src="/uploads/${institu.getFile().getName()}" alt="">
                             </div>
                             <form action="/institution-rh-details" method="post">
                             <div class="card-body px-3 py-0">

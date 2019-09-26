@@ -8,24 +8,16 @@ public class FileModel {
     private static final long serialVersionUID = -3009157732242241606L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    public long id;
 
     @Column(name = "name")
-    private String name;
-
-    @Column(name = "type")
-    private String type;
-
-    @Lob
-    @Column(name="pic")
-    private byte[] pic;
+    public String name;
+   
 
     public FileModel(){}
 
-    public FileModel( String name, String type, byte[] pic){
+    public FileModel( String name){
         this.name = name;
-        this.type = type;
-        this.pic = pic;
     }
 
     public Long getId(){
@@ -44,19 +36,4 @@ public class FileModel {
         this.name = name;
     }
 
-    public String getType(){
-        return this.type;
-    }
-
-    public void setType(String type){
-        this.type = type;
-    }
-
-    public byte[] getPic(){
-        return this.pic;
-    }
-
-    public void setPic(byte[] pic){
-        this.pic = pic;
-    }
 }

@@ -36,6 +36,11 @@ public class Ressource {
 	private FileModel file;
 
 	@ManyToOne(optional = false)
+	@JoinColumn(name = "document_id")
+	@JsonProperty("file")
+	private FileModel document;
+
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "institution_id")
 	@JsonProperty("institution")
 	private Institution institution;
@@ -86,6 +91,14 @@ public class Ressource {
 		return institution;
 	}
 
+	public FileModel getDocument() {
+		return document;
+	}
+
+	public void setDocument(FileModel document) {
+		this.document = document;
+	}
+
 	public void setInstitution(Institution institution) {
 		this.institution = institution;
 	}
@@ -128,7 +141,7 @@ public class Ressource {
 //	}
 
 
-	public Ressource(String nom,Type type,String date, String etat,String description,String carracteristics,FileModel file,Institution institution) {
+	public Ressource(String nom,Type type,String date, String etat,String description,String carracteristics,FileModel file,Institution institution,FileModel document) {
 		this.nom = nom;
 		this.type = type;
 		this.date = date;
@@ -137,6 +150,7 @@ public class Ressource {
 		this.description = description;
 		this.file = file;
 		this.institution = institution;
+		this.document = document;
 	}
 
 	protected Ressource(){

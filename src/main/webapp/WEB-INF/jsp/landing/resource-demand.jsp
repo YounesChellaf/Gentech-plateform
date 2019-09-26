@@ -67,6 +67,7 @@
                             </div>
                             <input type="text" class="form-control border-left-0 pl-0" placeholder="Nom" name="lastName" required>
                         </div>
+                        <input type="hidden" name="resource" value="${resource}">
                         <div class="input-group input-group--focus mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white"></span>
@@ -96,6 +97,13 @@
                             </div>
                             <textarea type="text" class="form-control border-left-0 pl-0" placeholder="Description" name="description" required></textarea>
                         </div>
+                        <div class="input-group input-group--focus mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white"></span>
+                            </div>
+                            <input type="file" name="file" class="form-control border-left-0 pl-0"  required />
+                        </div>
+
                         <div class="input-group my-4">
                             <label class="ec-checkbox">
                                 <input type="checkbox" name="checkbox">

@@ -90,7 +90,7 @@
         <div class="row align-items-center">
 
             <div class="col-lg-5 mb-4 mr-auto text-center">
-                <img class="wow fadeInLeft w-100 rounded" src="images/biologie.jpeg" alt="">
+                <img class="wow fadeInLeft w-100 rounded" src="/uploads/${article.getFile().getName()}" alt="">
             </div>
 
             <div class="col-lg-6">

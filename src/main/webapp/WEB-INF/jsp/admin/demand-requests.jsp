@@ -94,8 +94,8 @@
                                         <th>Raison de demande</th>
                                         <th>Resource</th>
                                         <th>Status</th>
-                                        <th>Details</th>
-                                        <th>Decision</th>
+                                        <th>Valider</th>
+                                        <th>Rejeter</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -107,10 +107,13 @@
                                             <td>${request.getReason()}</td>
                                             <td>${request.getResource()}</td>
                                             <td>${request.getState()}</td>
-                                            <td><button class="btn btn-info">Details</button></td>
                                             <form action="/admin/validate-request" method="post">
                                                 <input type="hidden" name="request_id" value="${request.getId()}">
                                             <td><button type="submit" class="btn btn-success" >Valider la requete</button></td>
+                                            </form>
+                                            <form action="/admin/reject" method="post">
+                                                <input type="hidden" name="request_id" value="${request.getId()}">
+                                                <td><button type="submit" class="btn btn-danger" >Rejection</button></td>
                                             </form>
                                         </tr>
                                     </c:forEach>

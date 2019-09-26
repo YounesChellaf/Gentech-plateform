@@ -50,6 +50,7 @@ public class UtilisateurController {
         if ( user.getPassword().equals(password)) {
             session.setAttribute("logged_in",true);
             session.setAttribute("user",user);
+            session.setAttribute("permission",user.getPermission());
             session.setAttribute("role",user.getRole().getDesignation());
             return "landing/home" ;
         }

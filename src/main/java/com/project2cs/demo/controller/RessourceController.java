@@ -1,5 +1,7 @@
 package com.project2cs.demo.controller;
 
+import com.project2cs.demo.controller.storage.FileSystemStorageService;
+import com.project2cs.demo.controller.storage.StorageProperties;
 import com.project2cs.demo.model.*;
 
 import com.project2cs.demo.repo.FilesRepository;
@@ -39,15 +41,26 @@ public class RessourceController {
 	}
 
 	@PostMapping("/add-resource")
-	public String addType(@RequestParam int institu_id,@RequestParam MultipartFile image, @RequestParam String nom, @RequestParam String description, @RequestParam String carracteristics, @RequestParam int type_id) throws IOException {
+	public String addType(@RequestParam int institu_id,@RequestParam MultipartFile document,@RequestParam MultipartFile image, @RequestParam String nom, @RequestParam String description, @RequestParam String carracteristics, @RequestParam int type_id) throws IOException {
 
 		Institution institution = institutionRepository.findById((long) institu_id).get();
-		FileModel filemode = new FileModel(image.getOriginalFilename(), image.getContentType(), image.getBytes());
-		filesRepository.save(filemode);
+		
+		String fname = image.getOriginalFilename();
+        FileModel filemode = new FileModel(fname);
+        filesRepository.save(filemode);
+        FileSystemStorageService fss= new FileSystemStorageService(new StorageProperties());
+		fss.store(image, fname);
+
+		String dname = image.getOriginalFilename();
+		FileModel doc = new FileModel(dname);
+		filesRepository.save(doc);
+		FileSystemStorageService dss= new FileSystemStorageService(new StorageProperties());
+		dss.store(image, dname);
+		
 		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date(System.currentTimeMillis());
 		Type type = typeRepository.findById(type_id).get();
-		ressourceRep.save(new Ressource(nom,type,formatter.format(date),"disponible",description,carracteristics,filemode,institution));
+		ressourceRep.save(new Ressource(nom,type,formatter.format(date),"disponible",description,carracteristics,filemode,institution,doc));
 		return "landing/home";
 	}
 	

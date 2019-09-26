@@ -60,7 +60,6 @@
                                 <a href="/expert/request-permis"><button class="btn btn-outline-danger ">Valider les requestes d'utilisation</button></a>
                             </c:when>
                             <c:otherwise>
-                                <a href="/expert/request-permis"><button class="btn btn-outline-danger ">Valider les requestes d'utilisation</button></a>
                             </c:otherwise>
                         </c:choose>
 <%--                        <a href="/resource-demand"><button class="btn btn-outline-success" style="margin-right: 10px">Demander une resource genetique</button></a>--%>
@@ -189,7 +188,7 @@
             <c:forEach var="article" items="${articles}">
             <div class="col-lg-4 mt-5">
                 <div class="card">
-                    <img class="rounded" src="images/biologie.jpeg" alt="">
+                    <img class="rounded" src="/uploads/${article.getFile().getName()}" alt="">
                     <form action="/article-details" method="post">
                     <div class="card-body px-0">
                         <span class="h4 my-2">
@@ -244,11 +243,11 @@
 
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <label for="recipient-name" class="control-label">Type de resource</label>
+                                <label for="recipient-name" class="control-label">Institution</label>
                                 <select name="institu_id" class="form-control">
                                     <option value="">Choisir l institution de votre resource</option>
-                                    <c:forEach var="institu" items="${institutions}">
-                                        <option value="${institu.getId()}">${institu.getName()}</option>
+                                    <c:forEach var="instit" items="${institutions}">
+                                        <option value="${instit.getId()}">${instit.getName()}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -264,6 +263,10 @@
                         <div class="form-group">
                             <label for="recipient-name" class="control-label">Image de la resource</label>
                             <input type="file" name="image" class="form-control"  required>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">Document privé</label>
+                            <input type="file" name="document" class="form-control"  required>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-success">Ajouter</button>
