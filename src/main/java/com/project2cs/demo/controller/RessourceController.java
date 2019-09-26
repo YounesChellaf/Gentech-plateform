@@ -1,5 +1,7 @@
 package com.project2cs.demo.controller;
 
+import com.project2cs.demo.controller.storage.FileSystemStorageService;
+import com.project2cs.demo.controller.storage.StorageProperties;
 import com.project2cs.demo.model.*;
 
 import com.project2cs.demo.repo.FilesRepository;
@@ -42,8 +44,13 @@ public class RessourceController {
 	public String addType(@RequestParam int institu_id,@RequestParam MultipartFile image, @RequestParam String nom, @RequestParam String description, @RequestParam String carracteristics, @RequestParam int type_id) throws IOException {
 
 		Institution institution = institutionRepository.findById((long) institu_id).get();
-		FileModel filemode = new FileModel(image.getOriginalFilename(), image.getContentType(), image.getBytes());
-		filesRepository.save(filemode);
+		
+		String fname = Math.random() + image.getOriginalFilename();
+        FileModel filemode = new FileModel(fname);
+        filesRepository.save(filemode);
+        FileSystemStorageService fss= new FileSystemStorageService(new StorageProperties());
+		fss.store(image, fname);
+		
 		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date(System.currentTimeMillis());
 		Type type = typeRepository.findById(type_id).get();

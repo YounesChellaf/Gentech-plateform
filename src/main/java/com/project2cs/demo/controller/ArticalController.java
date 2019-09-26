@@ -1,5 +1,7 @@
 package com.project2cs.demo.controller;
 
+import com.project2cs.demo.controller.storage.FileSystemStorageService;
+import com.project2cs.demo.controller.storage.StorageProperties;
 import com.project2cs.demo.model.Article;
 import com.project2cs.demo.model.FileModel;
 import com.project2cs.demo.repo.ArticleRepository;
@@ -17,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 
 @Controller
@@ -39,8 +42,12 @@ public class ArticalController {
     @RequestMapping(value = "/admin/add-article",method = RequestMethod.POST)
     public String addArticle(@RequestParam MultipartFile image , @RequestParam String title, @RequestParam String content) throws IOException {
 
-        FileModel filemode = new FileModel(image.getOriginalFilename(), image.getContentType(), image.getBytes());
+    	String fname = Math.random() + image.getOriginalFilename();
+        FileModel filemode = new FileModel(fname);
         filesRepository.save(filemode);
+        FileSystemStorageService fss= new FileSystemStorageService(new StorageProperties());
+		fss.store(image, fname);
+		
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(System.currentTimeMillis());
         repository.save(new Article(title,content,formatter.format(date),filemode));

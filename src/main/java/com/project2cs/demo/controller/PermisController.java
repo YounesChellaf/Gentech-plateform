@@ -1,5 +1,7 @@
 package com.project2cs.demo.controller;
 
+import com.project2cs.demo.controller.storage.FileSystemStorageService;
+import com.project2cs.demo.controller.storage.StorageProperties;
 import com.project2cs.demo.model.FileModel;
 import com.project2cs.demo.model.PermisRequest;
 import com.project2cs.demo.repo.FilesRepository;
@@ -37,8 +39,13 @@ public class PermisController {
                       @RequestParam String raison,
                       @RequestParam String description,
                       @RequestParam MultipartFile file) throws IOException {
-        FileModel filemode = new FileModel(file.getOriginalFilename(), file.getContentType(), file.getBytes());
+    	
+    	String fname = Math.random() + file.getOriginalFilename();
+        FileModel filemode = new FileModel(fname);
         filesRepository.save(filemode);
+        FileSystemStorageService fss= new FileSystemStorageService(new StorageProperties());
+		fss.store(file, fname);
+		
         repository.save(new PermisRequest(lastName,firstName,email,raison,description,"draft",filemode));
         return "landing/home";
     }

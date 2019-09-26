@@ -1,5 +1,7 @@
 package com.project2cs.demo.controller;
 
+import com.project2cs.demo.controller.storage.FileSystemStorageService;
+import com.project2cs.demo.controller.storage.StorageProperties;
 import com.project2cs.demo.model.Categorie;
 import com.project2cs.demo.model.FileModel;
 import com.project2cs.demo.model.Institution;
@@ -32,8 +34,11 @@ public class InstitutionController {
 
     @PostMapping("/admin/add-institution")
     public String addInstitu(@RequestParam MultipartFile image , @RequestParam String nom, @RequestParam String location, @RequestParam String region, @RequestParam String description) throws IOException {
-        FileModel filemode = new FileModel(image.getOriginalFilename(), image.getContentType(), image.getBytes());
+    	String fname = Math.random() + image.getOriginalFilename();
+        FileModel filemode = new FileModel(fname);
         filesRepository.save(filemode);
+        FileSystemStorageService fss= new FileSystemStorageService(new StorageProperties());
+		fss.store(image, fname);
         institutionRepository.save(new Institution(nom,location,description,region,filemode));
         return "redirect:" + redirectUrl;
     }

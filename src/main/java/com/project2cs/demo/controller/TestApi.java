@@ -45,7 +45,7 @@ public class TestApi {
     @PostMapping(value="/upload")
     public String upload(@RequestParam("doc") MultipartFile file) {
 		FileSystemStorageService fss= new FileSystemStorageService(new StorageProperties());
-		fss.store(file,"jklfdsqm.pdf");
+		fss.store(file,file.getOriginalFilename());
     	return file.getOriginalFilename();
     }
 
