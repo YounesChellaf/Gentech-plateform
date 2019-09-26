@@ -54,7 +54,7 @@
             <div class="col-lg-8 paddingRight-30 my-4">
                 <div class="media justify-content-between">
                     <div class="group">
-                        <a href="#" class="h4">
+                        <a href="/uploads/${reglement.getFile().getName()}" class="h4" target="_blank">
                             ${reglement.getDesignation()}
                         </a>
                     </div>

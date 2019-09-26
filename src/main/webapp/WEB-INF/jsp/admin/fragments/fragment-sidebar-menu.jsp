@@ -24,7 +24,7 @@
                     <li><a><i class="fa fa-home"></i>Institutions & RH<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="/admin/institution">Institutions</a></li>
-                            <li><a href="/admin/rh">RH</a></li>
+                            <li><a href="/admin/rh">Projet</a></li>
                         </ul>
                     </li>
                     <li><a href="/admin/request-permis"><i class="fa fa-sitemap"></i>Demande de permis</a>
