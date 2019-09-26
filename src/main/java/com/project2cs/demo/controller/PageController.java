@@ -3,6 +3,7 @@ package com.project2cs.demo.controller;
 import com.project2cs.demo.model.Article;
 import com.project2cs.demo.model.Ressource;
 import com.project2cs.demo.model.Rh;
+import com.project2cs.demo.model.Role;
 import com.project2cs.demo.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -54,7 +55,6 @@ public class PageController {
         Ressource ressource = ressourceRepository.findById(id).get();
         //model.addAttribute("usage",usageRepository.findById((long) ressource.getId()));
         model.addAttribute("resource",ressource);
-        //model.addAttribute("usage",);
         return "landing/resource-details";
     }
 
@@ -104,11 +104,11 @@ public class PageController {
         model.addAttribute("rhs",rh);
         return "landing/rh";
     }
-    @GetMapping("/admin")
+    @GetMapping( value = "/admin")
     public String admin(HttpSession session)
     {
-
-        if ((boolean)session.getAttribute("logged_in")==true){
+        //return  (String) session.getAttribute("role");
+        if (((boolean)session.getAttribute("logged_in")==true) && (session.getAttribute("role").equals("admin"))){
             return "admin/plain-page";}
         else
             return "login";

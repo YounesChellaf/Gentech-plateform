@@ -96,9 +96,9 @@
                                     <tbody>
                                     <c:forEach var="role" items="${roles}">
                                         <tr>
-                                            <td>${role.getRole()}</td>
-                                            <td><button class="btn btn-success" data-toggle="modal" data-target="#model-update-role-${role.getRoleId()}">Modifier</button></td>
-                                            <td><button class="btn btn-danger" data-toggle="modal" data-target="#model-remove-role-${role.getRoleId()}">Supprimer</button></td>
+                                            <td>${role.getDesignation()}</td>
+                                            <td><button class="btn btn-success" data-toggle="modal" data-target="#model-update-role-${role.getId()}">Modifier</button></td>
+                                            <td><button class="btn btn-danger" data-toggle="modal" data-target="#model-remove-role-${role.getId()}">Supprimer</button></td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
@@ -135,7 +135,7 @@
 
         <c:forEach var="role" items="${roles}">
             <div class="col-md-4">
-                <div id="model-update-role-${role.getRoleId()}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div id="model-update-role-${role.getId()}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -146,8 +146,8 @@
 
                                     <div class="form-group">
                                         <label for="recipient-name" class="control-label">designation</label>
-                                        <input type="text" name="designation" class="form-control" value="${role.getRole()}">
-                                        <input type="hidden" name="id" value="${role.getRoleId()}">
+                                        <input type="text" name="designation" class="form-control" value="${role.getDesignation()}">
+                                        <input type="hidden" name="id" value="${role.getId()}">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">Modifier</button>
@@ -159,7 +159,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div id="model-remove-role-${role.getRoleId()}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div id="model-remove-role-${role.getId()}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -168,8 +168,8 @@
                             <div class="modal-body">
                                 <form method="post" action="/admin/remove-role">
                                     <div class="form-group">
-                                        <p>Etes vous sure de supprimer le role de ${role.getRole()}</p>
-                                        <input type="hidden" value="${role.getRoleId()}" name="id">
+                                        <p>Etes vous sure de supprimer le role de ${role.getDesignation()}</p>
+                                        <input type="hidden" value="${role.getId()}" name="id">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-danger">Supprimer</button>

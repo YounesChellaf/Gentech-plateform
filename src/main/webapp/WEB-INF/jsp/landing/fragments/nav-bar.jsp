@@ -39,7 +39,9 @@
                             </li>
                         </c:when>
                         <c:otherwise>
-
+                            <li class="nav-item nav-item__has-dropdown">
+                                <a class="nav-link">${user.getUserName()}</a>
+                            </li>
                         </c:otherwise>
                     </c:choose>
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -36,6 +37,16 @@ public class TestApi {
             return "not";
         }
 
+    }
+
+    @GetMapping(value = "access")
+    public String test(HttpSession session)
+    {
+        return  (String) session.getAttribute("role");
+//        if ((boolean)session.getAttribute("logged_in")==true && (String) session.getAttribute("role")=="admin"){
+//            return "admin/plain-page";}
+//        else
+//            return "login";
     }
 
 

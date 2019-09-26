@@ -60,7 +60,7 @@
                     <p>
                         Les informations fournis dans ce formulaire doit etre obligatoirement correcte pour le traitement de votre demande.
                     </p>
-                    <form action="submit-demand" method="POST" class="mt-4" enctype="multipart/form-data">
+                    <form action="/submit-demand" method="POST" class="mt-4" enctype="multipart/form-data">
                         <div class="input-group input-group--focus mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white"></span>
@@ -84,10 +84,10 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white"></span>
                             </div>
-                                <select name="raison" class="form-control border-left-0 pl-0">
+                                <select name="reason" class="form-control border-left-0 pl-0">
                                     <option value="">Type d usage</option>
-                                        <option value="">Scientifique</option>
-                                        <option value="">Commerciale</option>
+                                        <option value="scientifique">Scientifique</option>
+                                        <option value="commerciale">Commerciale</option>
                                 </select>
                         </div>
                         <div class="input-group input-group--focus mb-3">
@@ -95,12 +95,6 @@
                                 <span class="input-group-text bg-white"></span>
                             </div>
                             <textarea type="text" class="form-control border-left-0 pl-0" placeholder="Description" name="description" required></textarea>
-                        </div>
-                        <div class="input-group input-group--focus mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white"></span>
-                            </div>
-                            <input type="file" class="form-control border-left-0 pl-0"  name="file" required>
                         </div>
                         <div class="input-group my-4">
                             <label class="ec-checkbox">

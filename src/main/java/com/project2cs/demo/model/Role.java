@@ -34,6 +34,7 @@ public class Role implements Serializable {
         return id;
     }
 
+
     public void setDesignation(String designation) {
         this.designation = designation;
     }

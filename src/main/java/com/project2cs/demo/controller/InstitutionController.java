@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
@@ -25,9 +26,11 @@ public class InstitutionController {
     FilesRepository filesRepository;
 
     @GetMapping("/admin/institution")
-    public String getInstitution(ModelMap model){
+    public String getInstitution(HttpSession session,ModelMap model){
+        if (((boolean)session.getAttribute("logged_in")==true) && (session.getAttribute("role").equals("admin"))){
         model.addAttribute("institutions",institutionRepository.findAll());
-        return "admin/institution";
+        return "admin/institution";}
+        return "login";
     }
 
     @PostMapping("/admin/add-institution")

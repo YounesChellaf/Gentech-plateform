@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,16 +55,24 @@
                             ${resource.getNom()}
                         </h1>
                     </div>
-                    <div class="col-lg-3 col-md-6 my-2">
-                        <div class="text-md-right height-100p">
-                            <a class="btn btn-primary" href="/resource-demand">Demander autorisation</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 my-2">
-                        <div class="text-md-right height-100p">
-                            <a class="btn btn-outline-primary" data-toggle="modal" data-target="#model-add-role">Ajouter Usage</a>
-                        </div>
-                    </div>
+                    <c:choose>
+                        <c:when test="${role == 'expert'}">
+                            <div class="col-lg-3 col-md-6 my-2">
+                                <div class="text-md-right height-100p">
+                                    <a class="btn btn-outline-primary" data-toggle="modal" data-target="#model-add-role">Ajouter Usage</a>
+                                </div>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="col-lg-3 col-md-6 my-2">
+                                <div class="text-md-right height-100p">
+                                    <a class="btn btn-primary" href="/resource-demand">Demander autorisation</a>
+                                </div>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+
+
                 </div> <!-- END row-->
                 <div class="col-12 mt-4">
                     <ul class="nav tab-line tab-line tab-line--3x border-bottom mb-5" role="tablist">

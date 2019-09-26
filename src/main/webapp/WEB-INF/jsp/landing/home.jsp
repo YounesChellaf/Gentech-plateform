@@ -54,9 +54,17 @@
                 </h1>
                 <div class="container">
                     <div class="row" style="margin-left: 22%" >
+                        <c:choose>
+                            <c:when test="${role == 'expert'}">
+                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#model-add-role" style="margin-right: 10px">Ajouter une resource genetique</button>
+                                <a href="/expert/request-permis"><button class="btn btn-outline-danger ">Valider les requestes d'utilisation</button></a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="/expert/request-permis"><button class="btn btn-outline-danger ">Valider les requestes d'utilisation</button></a>
+                            </c:otherwise>
+                        </c:choose>
 <%--                        <a href="/resource-demand"><button class="btn btn-outline-success" style="margin-right: 10px">Demander une resource genetique</button></a>--%>
-                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#model-add-role" style="margin-right: 10px">Ajouter une resource genetique</button>
-                        <a href="/help-demand"><button class="btn btn-outline-danger ">Comment demander une resource ?</button></a>
+
                     </div>
                 </div>
             </div>

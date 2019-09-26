@@ -34,36 +34,23 @@ public class PermisRequest {
     @Column(name = "state")
     private String state;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "file_id")
-    @JsonProperty("file")
-    private FileModel file;
-
 
     protected PermisRequest() {
     }
 
-    public PermisRequest(String firstName, String lastName, String email, String socialReason, String description, String state,FileModel file) {
+    public PermisRequest(String firstName, String lastName, String email, String socialReason, String description, String state) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.reason = socialReason;
         this.description = description;
         this.state = state;
-        this.file = file;
     }
 
     public String getReason() {
         return reason;
     }
 
-    public FileModel getFile() {
-        return file;
-    }
-
-    public void setFile(FileModel file) {
-        this.file = file;
-    }
 
     public long getId() {
         return id;
@@ -85,9 +72,6 @@ public class PermisRequest {
         return description;
     }
 
-    public String reason() {
-        return reason;
-    }
 
     public String getResource() {
         return resource;

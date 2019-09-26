@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface PermisRepository extends CrudRepository<PermisRequest, Long> {
     List<PermisRequest> findByResource(String resource);
+    List<PermisRequest> findByState(String state);
 }

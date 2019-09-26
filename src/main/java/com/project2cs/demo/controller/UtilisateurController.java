@@ -2,7 +2,9 @@ package com.project2cs.demo.controller;
 
 
 
+import com.project2cs.demo.model.Role;
 import com.project2cs.demo.model.Utilisateur;
+import com.project2cs.demo.repo.RoleRepository;
 import com.project2cs.demo.repo.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,14 +24,19 @@ public class UtilisateurController {
 
     @Autowired
     UtilisateurRepository repository;
+    @Autowired
+    RoleRepository roleRepository;
 
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public String register(@RequestParam String userName,
                       @RequestParam String email,
-                      @RequestParam String password){
+                      @RequestParam int role_id,
+                      @RequestParam String password,
+                      @RequestParam String confirm_password){
 
-        repository.save(new Utilisateur(userName,email,password,false));
+        Role role = roleRepository.findById((long) role_id).get();
+        repository.save(new Utilisateur(userName,email,password,false,role));
         return "landing/home";
 
     }
@@ -43,6 +50,7 @@ public class UtilisateurController {
         if ( user.getPassword().equals(password)) {
             session.setAttribute("logged_in",true);
             session.setAttribute("user",user);
+            session.setAttribute("role",user.getRole().getDesignation());
             return "landing/home" ;
         }
         else {

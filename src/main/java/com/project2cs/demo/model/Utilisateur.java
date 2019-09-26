@@ -1,4 +1,6 @@
 package com.project2cs.demo.model;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -27,14 +29,20 @@ public class Utilisateur implements Serializable {
     @Column(name = "isBlocked")
     private boolean isBlocked = false;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "role_id")
+    @JsonProperty("role")
+    private Role role;
+
     protected Utilisateur() {
     }
 
-    public Utilisateur(String userName, String email, String password,boolean block) {
+    public Utilisateur(String userName, String email, String password,boolean block,Role role) {
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.isBlocked = block;
+        this.role = role;
     }
 
     public String getEmail() {
@@ -70,6 +78,13 @@ public class Utilisateur implements Serializable {
         this.email = email;
     }
 
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Role getRole() {
+        return role;
+    }
 
     public void setUserName(String userName) {
         this.userName = userName;

@@ -93,6 +93,7 @@
                                     <tr>
                                         <th>Nom d utilisateur</th>
                                         <th>Email</th>
+                                        <th>Role</th>
                                         <th>blockage</th>
                                     </tr>
                                     </thead>
@@ -101,6 +102,7 @@
                                     <tr>
                                         <td>${user.getUserName()}</td>
                                         <td>${user.getEmail()}</td>
+                                        <td>${user.getRole().getDesignation()}</td>
                                         <c:if test="${user.getIsBlocked() == false}" >
                                             <form action="/admin/block-user" method="post">
                                                 <input type="hidden" name="id" value="${user.getId()}">

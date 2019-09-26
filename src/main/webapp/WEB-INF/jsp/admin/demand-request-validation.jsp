@@ -73,7 +73,7 @@
                     <div class="title_right">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                             <div class="input-group">
-<%--                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#model-add-role">Ajouter role</button>--%>
+                                <%--                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#model-add-role">Ajouter role</button>--%>
                             </div>
                         </div>
                     </div>
@@ -108,10 +108,7 @@
                                             <td>${request.getResource()}</td>
                                             <td>${request.getState()}</td>
                                             <td><button class="btn btn-info">Details</button></td>
-                                            <form action="/admin/validate-request" method="post">
-                                                <input type="hidden" name="request_id" value="${request.getId()}">
-                                            <td><button type="submit" class="btn btn-success" >Valider la requete</button></td>
-                                            </form>
+                                            <td><button class="btn btn-warning" >Valider l'utilisation</button></td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
